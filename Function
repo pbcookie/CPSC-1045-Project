@@ -1,7 +1,9 @@
 //draw card 
 //card is the object of class card
 //x , y is the coordinates
-function draw( card, x,y){
+//ch is the height of card
+//cw is the width of card
+function draw( card, x,y , ch, cw){
   switch( card.getType() ){
     case 'circle':
       switch( card.getValue() ){
