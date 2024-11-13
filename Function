@@ -1,0 +1,6 @@
+//draw card 
+//card is the object of class card
+//x , y is the coordinates
+function draw( card, x,y){
+  
+}
