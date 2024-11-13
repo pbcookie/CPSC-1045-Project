@@ -1,0 +1,8 @@
+class Card{
+  //number is Int  from 1 to 8
+  //type is string, eg:circle
+  constructor(number, type){
+    this.number = number;
+    this.type = type;
+  }
+}
