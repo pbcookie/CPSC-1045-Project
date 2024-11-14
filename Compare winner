@@ -4,8 +4,8 @@
 
 //playerA and playerB are the instances of class Player
 CompareCard(playerA,playerB){
-    let handcardA = translateStringNumber(playerA.getHandCards());
-    let handcardB = translateStringNumber(playerB.getHandCards());
+    let handcardA = ArrToStr(playerA.getHandCards());
+    let handcardB = ArrToStr(playerB.getHandCards());
     if( Number(handcardA) > Number(handcardB)){
         return playerA.getName();
     }else if( Number(handcardA) < Number(handcardB)){
@@ -26,6 +26,6 @@ CompareCard(playerA,playerB){
 After converting both hands into 6-digit strings, we can directly compare the two strings to determine the winner.
 //
 
-function translateStringNumber(arr){
+function ArrToStr(arr){
     return string
 }
