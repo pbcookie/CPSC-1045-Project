@@ -32,7 +32,9 @@ class Card{
   draw(){
     if(this.location != cardLocation[0]){//this card is  in deck, no need to be drawed
       if(this.faceUp){//this card is face up
-        drawface( ctx, this, this.location[0],location[1] , this.ch, this.cw);
+        drawface( ctx, this, this.location[0],this.location[1] , this.ch, this.cw);
+        // this.location[0] is the coodination-x
+        // this.location[1] is the coodination-y
       }else{
         //this card is face down
         drawback( ctx, this.ch, this.cw);
