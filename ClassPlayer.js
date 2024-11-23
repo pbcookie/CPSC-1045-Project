@@ -3,6 +3,7 @@ class Player{
     constructor(name){
         this.name = name;
         this.handCards = [];
+        this.point = 0;
     }
     addCard( newCard ){
         this.handCards.push(newCard);
@@ -12,4 +13,6 @@ class Player{
     }
     getHandCards(){return this.handCards;}  //return a reference of the handcard
     getName(){return this.name;} 
+    getPoint(){return this.point;}
+    addPoint(){this.point += 1;}
 }
