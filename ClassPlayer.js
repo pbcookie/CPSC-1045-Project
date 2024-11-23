@@ -10,6 +10,6 @@ class Player{
     clearHandCard(){
         this.handCards = [];
     }
-    getHandCards(){return this.handCards;}  //return a new array of handcards
+    getHandCards(){return this.handCards;}  //return a reference of the handcard
     getName(){return this.name;} 
 }
