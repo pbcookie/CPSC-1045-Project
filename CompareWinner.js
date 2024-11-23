@@ -1,12 +1,13 @@
-//Convert the players' handcard to a string of numbers and then compare. 
+//Convert the combination of the players' handcard and the commnunication card into a string of numbers and then compare. 
 //display palyers' handcard
 //return the winner's name
 
 //playerA and playerB are the instances of class Player
-CompareCard(playerA,playerB){
-    let handcardA = ArrToStr(playerA.getHandCards());
-    let handcardB = ArrToStr(playerB.getHandCards());
-    if( Number(handcardA) > Number(handcardB)){
+//cCardArr is the array of communication card
+CompareCard(playerA,playerB,cCardArr){
+    let fivecardA = ArrToStr(playerA.getHandCards().concat(cCardArr));
+    let fivecardB = ArrToStr(playerB.getHandCards().concat(cCardArr));
+    if( Number(fivecardA) > Number(fivecardB)){
         return playerA.getName();
     }else if( Number(handcardA) < Number(handcardB)){
         return playerB.getName();
