@@ -13,18 +13,30 @@ Const thirdCommunicationCards = [coodinator-x,coodinator- y];
 class Card{
   //number is Int  from 1 to 8
   //type is string, eg:circle
-  constructor(number, type){
+  //ch is the height of card
+  //cw is the width of card
+  constructor(number, type, ch, cw){
     this.number = number;
     this.type = type;
     this.location = cardLocation[0]; //this card is initial in the deck
     this.faceUp = false;// this card is face down
-    this.draw = false;// because this card is the deck, don't draw this card
+    this.ch = ch;
+    this.cw = cw;
   }
   getType(){return this.type;}
   getValue(){return this.value;}
   getLocation(){return this.location;}
   setLocation( newLocation ){this.location = newLocation;}
   isFace(){return this.faccUp;}
-  shouldDraw(){return this.draw;}
-  decideDraw ( newDecision ){this.draw = newDecision;}
+  setFace( cover ){this.faceUp = cover;}
+  draw(){
+    if(this.location != cardLocation[0]){//this card is  in deck, no need to be drawed
+      if(this.faceUp){//this card is face up
+        drawface( ctx, this, this.location[0],location[1] , this.ch, this.cw);
+      }else{
+        //this card is face down
+        drawback( ctx, this.ch, this.cw);
+      }
+    }
+  }
 }
