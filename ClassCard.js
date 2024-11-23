@@ -27,8 +27,8 @@ class Card{
   getValue(){return this.value;}
   getLocation(){return this.location;}
   setLocation( newLocation ){this.location = newLocation;}
-  isFace(){return this.faccUp;}  //If you want to reveal this card. this need to be true
-  setFace( cover ){this.faceUp = cover;}
+  isFace(){return this.faccUp;}  
+  setFace( cover ){this.faceUp = cover;}//If you want to reveal this card. use this method to set faceUp to true
   draw(){
     if(this.location != cardLocation[0]){//this card is  in deck, no need to be drawed
       if(this.faceUp){//this card is face up
