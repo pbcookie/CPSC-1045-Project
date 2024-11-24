@@ -18,6 +18,8 @@ function NewRound() {
     drawTable(); // call function that draws a new table
     ScoreTracker(player1, playerScore); // call function that draws a new score tracker for player
     ScoreTracker(computer, computerScore); // call function that draws a new score tracker for computer
-    Shuffle();
-    Deal();
+    Shuffle(); // call function which randomizes the deck array
+    DealCards(player, 2); // call function which pops values from the deck array and assigns them to hand arrays
+    DealCards(computer, 2);
+    DealCards(table, 3);
 }
