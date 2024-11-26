@@ -1,14 +1,14 @@
 // CPSC 1405 | Shehzad | Project | hand hierarchy
 
 // first check where the hand is in the hierarchy
-// High card = 0
-// Pair = 1
-// Two Pair = 2
-// Three of a kind = 3
-// Straight = 4
-// Flush = 5
-// Full House = 6
-// Straight Flush = 7
+// Straight Flush = 0
+// Full House = 1
+// Flush = 2
+// Straight = 3
+// Three of a kind = 4
+// Two Pair = 5
+// Pair = 6
+// High card = 7
 let hierarchy = ["Straight Flush", "Full House", "Flush", "Straight", "Three of a Kind", "Two Pair", "Pair", "High Card"];
 
 // then if hand strengths are tied, compare values of the cards
@@ -21,8 +21,10 @@ let testSort = [5,4,3,2,1]; // [1,2,3,4,5] [3,2,1,5,4] [4,1,5,3,2] [1,1,3,2,2] [
 
 console.log(sortHand([5,4,3,2,1]));
 
+//console.log(straightCheck([1,2,3,4,6]))
+
 // test hands
-let testHighCard = [1,2,3,4,5];
+let testHighCard = [1,2,3,4,5]; // [5,4,3,2,1] [2,4,1,5,3]
 let testOnePair = [1,2,3,4,1]; // [1,1,2,3,4] [2,3,4,1,1] [2,3,1,4,1] 
 let testTwoPair = [1,1,3,2,2]; // [1,1,2,3,2] [1,1,2,2,3] [1,2,1,2,3] [1,2,1,3,2] [1,2,3,2,1] [3,1,1,2,2] [3,1,2,1,2] [1,2,3,2,1]
 let testThreeOfAKind = [3,2,3,4,3]; // [3,3,2,4,3] [3,2,3,3,4] [3,2,4,3,3] [3,3,2,3,4] [2,4,3,3,3] [3,2,3,4,3] [2,3,3,3,4] [2,3,4,3,3]
@@ -83,20 +85,19 @@ function OfAKind(playerHand) {
 
 function sortHand(playerHand) {
     // sorts the given array in ascending order
-    let saved;
-
-    let min = 0;
 
     for (i = 0; i < playerHand.length - 1; i++) {
-        for (j = i + 1; playerHand.length; j++) {
-            if (playerHand[j] < playerHand[min]) {
-                min = j;
+        let currentMin = playerHand[i];
+        let mindex = i;
+        for (j = i + 1; i < playerHand.length; j++) {
+            if (playerHand[j] < currentMin) {
+                mindex = j;
+                currentMin = playerHand[j];
             }
         }
-        if (playerHand[min] < playerHand[i]) {
-            saved = playerHand[i];
-            playerHand[i] = playerHand[min];
-            playerHand[min] = saved;
+        if (mindex != i) {
+            playerHand[mindex] = playerHand[i];
+            playerHand[i] = currentMin;
         }
     }
 
