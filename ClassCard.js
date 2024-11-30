@@ -24,7 +24,7 @@ class Card{
     this.cw = cw;
   }
   getType(){return this.type;}
-  getValue(){return this.value;}
+  getNum(){return this.number;}
   getLocation(){return this.location;}
   setLocation( newLocation ){this.location = newLocation;}
   isFace(){return this.faccUp;}  
