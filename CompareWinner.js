@@ -28,5 +28,8 @@ After converting both hands into 6-digit strings, we can directly compare the tw
 //
 
 function ArrToStr(arr){
+    //first, sort the array of cards
+    //because the card is not string,but object, we need function in sort method
+    arr.sort(function(a,b){return a.value - b.value;})
     return string
 }
