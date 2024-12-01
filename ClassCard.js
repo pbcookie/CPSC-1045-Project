@@ -32,10 +32,10 @@ class Card{
   setLocation( newLocation ){this.location = newLocation;}
   isFace(){return this.faccUp;}  
   setFace( cover ){this.faceUp = cover;}//If you want to reveal this card. use this method to set faceUp to true
-  draw(){
+  draw(ctx){
     if(this.location != cardLocation[0]){//this card is  in deck, no need to be drawed
       if(this.faceUp){//this card is face up
-        drawface( ctx, this, this.location[0],this.location[1] , this.ch, this.cw);
+        drawface(this, this.location[0],this.location[1] , this.ch, this.cw, ctx);
         // this.location[0] is the coodination-x
         // this.location[1] is the coodination-y
       }else{
