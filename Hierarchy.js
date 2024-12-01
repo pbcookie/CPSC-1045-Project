@@ -1,6 +1,6 @@
 // CPSC 1405 | Shehzad | Project | hand hierarchy
 
-// first check where the hand is in the hierarchy
+// hand strength hierarchy
 // Straight Flush = 0
 // Full House = 1
 // Flush = 2
@@ -16,20 +16,20 @@ let hierarchy = ["Straight Flush", "Full House", "Flush", "Straight", "Three of 
 // Full House vs Full House: highest 3 of a Kind wins; compare the pair only if 3 of a Kind is tied
 
 // test hands
- let testHand = [1,2,3,4,8]; // high card
+// let testHand = [1,2,3,4,8]; // high card
 // let testHand = [1,2,3,4,1]; // one pair
 // let testHand = [1,1,3,2,2]; // [1,1,2,3,3] [1,1,2,2,3] [1,2,2,3,3] // two pair
 // let testHand = [3,2,3,4,3]; // three of a kind
 // let testHand = [2,3,2,3,3]; // fullhouse
 
-console.log(OfAKind(testHand));
+// console.log(testHand);
 
-function countRepeats(playerHand, card, startIndex) {
+function countRepeats(playerHand, startIndex) {
     let count = 0;
 
     for (j = startIndex; j < playerHand.length; j++) { 
 
-        if (playerHand[startIndex] == playerHand[j]) {
+        if (playerHand[startIndex].number == playerHand[j].number) {
             count++;
         }
         else {
@@ -52,7 +52,7 @@ function OfAKind(playerHand) {
 
     for (i = 0; i < countingArray.length - 1; i++) { // loop through the entire hand
 
-        let count = countRepeats(countingArray, countingArray[i], i);
+        let count = countRepeats(countingArray, i);
 
         i += count - 1;
 
@@ -89,10 +89,10 @@ function OfAKind(playerHand) {
 
 function straightCheck(playerHand) {
     // checks if hand contains a straight
-    let sorted = playerHand.sort() //sortHand(playerHand.slice(0, (playerHand.length - 1)));
+    let sorted = playerHand.sort() 
     let isStraight = true;
     for (i = 0; i < sorted.length - 1; i++) {
-        if ((sorted[i] + 1) != sorted[i + 1]) {
+        if ((sorted[i].number + 1) != sorted[i + 1].number) {
             return isStraight = false;
         }
     }
@@ -103,8 +103,7 @@ function flushCheck(playerHand) {
     // checks if hand contains a flush, i.e. all cards have the same symbol
     let isFlush = true;
     for (i = 0; i < playerHand.length - 1; i++) {
-        if (playerHand[i] != playerHand[i + 1]) {
-        //if (playerHand[i].type != playerHand[i + 1].type) {
+        if (playerHand[i].type != playerHand[i + 1].type) {
             return isFlush = false;
         }
     }
