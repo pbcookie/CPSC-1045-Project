@@ -1,4 +1,4 @@
-//THis file depended on ClassPlayer.js and ClassCard.js
+//This file depends on ClassPlayer.js and ClassCard.js
 
 
 
