@@ -1,4 +1,4 @@
-//This class depend on DrawCard.js
+//This class depends on DrawCard.js
 
 // 2d array 
 //coodinator of location of card 
