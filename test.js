@@ -1,3 +1,5 @@
+// depend on ClassCard.js , ClassPlayer.js and CompareWinner.js
+
 ///player test
 let playerA = new Player("Jack");
 let playerB = new Player("Queen");
