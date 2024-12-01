@@ -44,6 +44,14 @@ function ArrToStr(arr){
             }else{
                 if(IsThreeofKind(arr)){
                     str = "3";
+                }else{
+                    if(IsTwoPair(arr)){
+                        str = "2";
+                    }else{
+                        if(IsOnePair(arr)){
+                            str ="1";
+                        }
+                    }
                 }
             }
         }
@@ -52,6 +60,93 @@ function ArrToStr(arr){
     for(i=0;i<arr.length;i++){
         str += arr[i];
     }
-  
     return str;
 }
+
+
+//five of funtions identying the type of cards and sorting them in order by the type of cards
+
+function IsStraightFlush(arr){
+    for(i=1;i<arr.length;i++){
+        if(arr[0].type !== arr[i].type ){return false;}
+        if(arr[0].number - arr[i].number !== i){return false;} 
+    }
+    return true;
+}
+
+function IsFullHouse(arr){
+    //if arr is fullhouse, arr is XXYYY or XXXYY, no other case
+    if( arr[0].number === arr[1].number && arr[0].number === arr[2].number && arr[3].number === arr[4].number){return true;}
+    if( arr[0].number === arr[1].number && arr[2].number === arr[3].number && arr[2].number === arr[4].number){
+        [arr[0],arr[4]] = [arr[4],arr[0]];
+        [arr[1],arr[3]] = [arr[3],arr[1]];
+        return true;}
+    //other case
+    return false;
+}
+
+
+function IsFlush(arr){
+    for(i=1;i<arr.length;i++){
+        if(arr[0].type !== arr[i].type ){return false;}
+    }
+    return true;
+}
+
+function IsThreeofKind(arr){
+    //only three case:
+    //01234
+    //YYYXZ
+    //XYYYZ
+    //XZYYY
+    if(arr[0].number === arr[1].number && arr[0].number === arr[2].number){return true;}
+    if(arr[1].number === arr[2].number && arr[1].number === arr[3].number){
+        [arr[0],arr[3]] = [arr[3],arr[0]];
+        return true;
+    }
+    if(arr[2].number === arr[3].number && arr[2].number === arr[4].number){
+        [arr[0],arr[3]] = [arr[3],arr[0]];
+        [arr[1],arr[4]] = [arr[4],arr[1]];
+        return true;
+    }
+    return false;
+}
+
+function IsTwoPair(arr){
+    //three case
+    //01234
+    //ZXXYY
+    //XXZYY
+    //XXYYZ
+    if(arr[1].number === arr[2].number && arr[3].number === arr[4].number){
+        [arr[0],arr[4]] = [arr[4],arr[0]];
+        [arr[0].arr[2]] = [arr[2],arr[0]];
+        return true;
+    }
+    if(arr[0].number === arr[1].number && arr[3].number === arr[4].number){
+        [arr[2],arr[4]] = [arr[4],arr[2]];
+        return true;
+    }
+    if(arr[0].number === arr[1].number && arr[2].number === arr[3].number){return true;}
+    return false;
+}
+
+function IsOnePair(arr){
+    //01234
+    //XXqwe
+    //qXXwe
+    //qwXXe
+    //qweXX
+    for(i=0;i<arr.length-1;i++){
+        if(arr[i].number === arr[i+1].number){
+            if(i !== 0){
+                [arr[0].arr[i]] = [arr[i],arr[0]];
+                [arr[1],arr[i+1]] = [arr[i+1],arr[1]];
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
+
