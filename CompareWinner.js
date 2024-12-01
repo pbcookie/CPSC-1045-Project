@@ -30,6 +30,28 @@ After converting both hands into 6-digit strings, we can directly compare the tw
 function ArrToStr(arr){
     //first, sort the array of cards
     //because the card is not string,but object, we need function in sort method
-    arr.sort(function(a,b){return a.value - b.value;})
-    return string
+    arr.sort(function(a,b){return a.number - b.number});
+    let str;
+    //identify which type the cards are
+    if(IsStraightFlush(arr)){
+        str = "6";
+    }else{
+        if(IsFullHouse(arr)){
+            str = "5";
+        }else{
+            if(IsFlush(arr)){
+                str = "4";
+            }else{
+                if(IsThreeofKind(arr)){
+                    str = "3";
+                }
+            }
+        }
+    }
+    //add rest number to the str
+    for(i=0;i<arr.length;i++){
+        str += arr[i];
+    }
+  
+    return str;
 }
