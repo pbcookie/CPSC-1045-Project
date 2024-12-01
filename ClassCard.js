@@ -1,21 +1,23 @@
 // 2d array 
 //coodinator of location of card 
-Const cardLocation = [deck,firstPlayerCard,secondPlayerCard,firstComputerCard,secondComputerCard,firstCommunicationCards, secondCommunicationCards, thirdCommunicationCards ];
-Const deck = [coodinator-x,coodinator- y];
-Const firstPlayerCard = [coodinator-x,coodinator- y];
-Const secondPlayerCard = [coodinator-x,coodinator- y];
-Const firstComputerCard = [coodinator-x,coodinator- y];
-Const secondComputerCard = [coodinator-x,coodinator- y];
-Const firstCommunicationCards = [coodinator-x,coodinator- y];
-Const secondCommunicationCards = [coodinator-x,coodinator- y];
-Const thirdCommunicationCards = [coodinator-x,coodinator- y];
+let coodinator_x,coodinator_y;
+
+const deck = [coodinator_x,coodinator_y];
+const firstPlayerCard = [coodinator_x,coodinator_y];
+const secondPlayerCard = [coodinator_x,coodinator_y];
+const firstComputerCard = [coodinator_x,coodinator_y];
+const secondComputerCard = [coodinator_x,coodinator_y];
+const firstCommunicationCards = [coodinator_x,coodinator_y];
+const secondCommunicationCards = [coodinator_x,coodinator_y];
+const thirdCommunicationCards = [coodinator_x,coodinator_y];
+const cardLocation = [deck,firstPlayerCard,secondPlayerCard,firstComputerCard,secondComputerCard,firstCommunicationCards, secondCommunicationCards, thirdCommunicationCards ];
 
 class Card{
   //number is Int  from 1 to 8
   //type is string, eg:circle
   //ch is the height of card
   //cw is the width of card
-  constructor(number, type, ch, cw){
+  constructor(number, type, ch = 120, cw = 80){
     this.number = number;
     this.type = type;
     this.location = cardLocation[0]; //this card is initial in the deck
@@ -23,6 +25,7 @@ class Card{
     this.ch = ch;
     this.cw = cw;
   }
+ 
   getType(){return this.type;}
   getNum(){return this.number;}
   getLocation(){return this.location;}
