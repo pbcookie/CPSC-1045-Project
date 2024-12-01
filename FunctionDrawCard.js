@@ -3,7 +3,7 @@
 //x , y is the coordinates
 //ch is the height of card
 //cw is the width of card
-function drawface( ctx, card, x,y , ch, cw){
+function drawface( ctx, card, x,y , ch = 120, cw = 80){
   switch( card.getType() ){
     case 'circle':
       switch( card.getValue() ){
