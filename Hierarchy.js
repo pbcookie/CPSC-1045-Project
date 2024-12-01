@@ -29,7 +29,7 @@ function countRepeats(playerHand, startIndex) {
 
     for (j = startIndex; j < playerHand.length; j++) { 
 
-        if (playerHand[startIndex].number == playerHand[j].number) {
+        if (playerHand[startIndex].getNum() == playerHand[j].getNum()) {
             count++;
         }
         else {
@@ -92,7 +92,7 @@ function straightCheck(playerHand) {
     let sorted = playerHand.sort() 
     let isStraight = true;
     for (i = 0; i < sorted.length - 1; i++) {
-        if ((sorted[i].number + 1) != sorted[i + 1].number) {
+        if ((sorted[i].getNum() + 1) != sorted[i + 1].getNum()) {
             return isStraight = false;
         }
     }
@@ -103,7 +103,7 @@ function flushCheck(playerHand) {
     // checks if hand contains a flush, i.e. all cards have the same symbol
     let isFlush = true;
     for (i = 0; i < playerHand.length - 1; i++) {
-        if (playerHand[i].type != playerHand[i + 1].type) {
+        if (playerHand[i].getType() != playerHand[i + 1].getType()) {
             return isFlush = false;
         }
     }
