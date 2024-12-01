@@ -1,3 +1,7 @@
+//THis file depended on ClassPlayer.js and ClassCard.js
+
+
+
 //Convert the combination of the players' handcard and the commnunication card into a string of numbers and then compare. 
 //display palyers' handcard
 //return the winner's name
