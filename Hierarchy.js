@@ -11,7 +11,7 @@
 // High card = 7
 let hierarchy = ["Straight Flush", "Full House", "Flush", "Straight", "Three of a Kind", "Two Pair", "Pair", "High Card"];
 
-// then if hand strengths are tied, compare values of the cards
+// If hand strengths are tied, compare values of the cards
 // Two Pair vs Two Pair: the better pair wins; compare the second pair only if first pair is tied
 // Full House vs Full House: highest 3 of a Kind wins; compare the pair only if 3 of a Kind is tied
 

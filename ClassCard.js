@@ -32,7 +32,7 @@ class Card{
   getNum(){return this.number;}
   getLocation(){return this.location;}
   setLocation( newLocation ){this.location = newLocation;}
-  isFace(){return this.faccUp;}  
+  isFace(){return this.faceUp;}  
   setFace(cover){this.faceUp = cover;}//If you want to reveal this card. use this method to set faceUp to true
   draw(ctx){
     if(this.location != cardLocation[0]){//this card is  in deck, no need to be drawed
@@ -45,5 +45,100 @@ class Card{
         drawback(ctx, this.location[0], this.location[1], this.ch, this.cw);
       }
     }
+  }
+}
+
+//draw card 
+//card is the object of class card
+//x , y is the coordinates
+//ch is the height of card
+//cw is the width of card
+function drawface(ctx, card, x, y, ch, cw){
+  switch( card.getType() ){
+    case 'circle':
+      switch( card.getValue() ){
+        case 1:
+        //draw card here
+        break;
+        case 2:
+        //draw card here
+        break;
+        case 3:
+        //draw card here
+        break;
+        case 4:
+        //draw card here
+        break;
+        case 5:
+        //draw card here
+        break;
+        case 6:
+        //draw card here
+        break;
+        case 7:
+        //draw card here
+        break;
+        case 8:
+        //draw card here
+        break;
+    }
+    break;
+    case 'triangle':
+      switch( card.getValue() ){
+        case 1:
+        //draw card here
+        break;
+        case 2:
+        //draw card here
+        break;
+        case 3:
+        //draw card here
+        break;
+        case 4:
+        //draw card here
+        break;
+        case 5:
+        //draw card here
+        break;
+        case 6:
+        //draw card here
+        break;
+        case 7:
+        //draw card here
+        break;
+        case 8:
+        //draw card here
+        break;
+    }
+
+    break;
+    case 'diamond':
+      switch( card.getValue() ){
+        case 1:
+        //draw card here
+        break;
+        case 2:
+        //draw card here
+        break;
+        case 3:
+        //draw card here
+        break;
+        case 4:
+        //draw card here
+        break;
+        case 5:
+        //draw card here
+        break;
+        case 6:
+        //draw card here
+        break;
+        case 7:
+        //draw card here
+        break;
+        case 8:
+        //draw card here
+        break;
+    }
+    break
   }
 }
