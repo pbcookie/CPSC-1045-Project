@@ -7,7 +7,7 @@ let commnunicationCard = [];
 
 let newCard;
 
-for(k=0;k<2;k++){
+for(let k=0;k<2;k++){
     let typecolor;
     switch(Math.floor(Math.random() * (3 - 1 + 1)) + 1){
         case 1:
