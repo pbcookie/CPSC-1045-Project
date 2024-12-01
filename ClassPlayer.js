@@ -1,3 +1,5 @@
+//This class depends on ClassCard.js
+
 class Player{
     //name is the player's name
     constructor(name){
