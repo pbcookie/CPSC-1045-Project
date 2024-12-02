@@ -46,6 +46,9 @@ class Card{
       }
     }
   }
+  display(){
+    return this.number + " " + this.type;
+  }
 }
 
 //draw card 
