@@ -2,10 +2,20 @@
 
 class Player{
     //name is the player's name
-    constructor(name){
+    constructor(name, playertype){
         this.name = name;
         this.handCards = [];
         this.point = 0;
+        this.playertype = playertype;
+        this.handcardLocation = [];
+        if(playertype == "player"){
+            this.handcardLocation.push(cardLocation[1]);//firstPlayerCardLocation
+            this.handcardLocation.push(cardLocation[2]);//secondPlayerCardLocation
+        }
+        if(playertype == "computer"){
+            this.handcardLocation.push(cardLocation[3]);//firstComputerCardLocation
+            this.handcardLocation.push(cardLocation[4]);//secondComputerCardLocation
+        }
     }
     addCard( newCard ){
         this.handCards.push(newCard);
