@@ -56,7 +56,7 @@ class Card{
 function drawface(ctx, card, x, y, ch, cw){
   switch( card.getType() ){
     case 'circle':
-      switch( card.getValue() ){
+      switch( card.getNum() ){
         case 1:
         //draw card here
         break;
@@ -84,7 +84,7 @@ function drawface(ctx, card, x, y, ch, cw){
     }
     break;
     case 'triangle':
-      switch( card.getValue() ){
+      switch( card.getNum() ){
         case 1:
         //draw card here
         break;
@@ -113,7 +113,7 @@ function drawface(ctx, card, x, y, ch, cw){
 
     break;
     case 'diamond':
-      switch( card.getValue() ){
+      switch( card.getNum() ){
         case 1:
         //draw card here
         break;
