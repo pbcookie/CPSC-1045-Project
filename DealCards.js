@@ -10,7 +10,7 @@
 //num is the nunber of cards that are dealed to the player
 function dealplayerCards(deck, player, num){
   deck.reverse();
-  for(let i=0;i<num){
+  for(let i=0;i<num;i++){
     let newCard =deck.pop(); 
     player.addCard(newCard);
     newCard.setLocation(player.handcardLocation[i]); //change the card's location into player's handcard loction
