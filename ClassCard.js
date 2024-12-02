@@ -12,7 +12,7 @@ const secondComputerCardLocation = [coodinator_x,coodinator_y];
 const firstCommunicationCardLocation = [coodinator_x,coodinator_y];
 const secondCommunicationCardLocation = [coodinator_x,coodinator_y];
 const thirdCommunicationCardLocation = [coodinator_x,coodinator_y];
-const cardLocation = [deck,firstPlayerCard,secondPlayerCard,firstComputerCard,secondComputerCard,firstCommunicationCards, secondCommunicationCards, thirdCommunicationCards ];
+const cardLocation = [deckLocation,firstPlayerCardLocation,secondPlayerCardLocation,firstComputerCardLocation,secondComputerCardLocation,firstCommunicationCardLocation, secondCommunicationCardLocation, thirdCommunicationCardLocation ];
 
 class Card{
   //number is Int  from 1 to 8
