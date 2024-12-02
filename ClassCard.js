@@ -4,14 +4,14 @@
 //coodinator of location of card 
 let coodinator_x,coodinator_y;
 
-const deck = [coodinator_x,coodinator_y];
-const firstPlayerCard = [coodinator_x,coodinator_y];
-const secondPlayerCard = [coodinator_x,coodinator_y];
-const firstComputerCard = [coodinator_x,coodinator_y];
-const secondComputerCard = [coodinator_x,coodinator_y];
-const firstCommunicationCards = [coodinator_x,coodinator_y];
-const secondCommunicationCards = [coodinator_x,coodinator_y];
-const thirdCommunicationCards = [coodinator_x,coodinator_y];
+const deckLocation = [coodinator_x,coodinator_y];
+const firstPlayerCardLocation = [coodinator_x,coodinator_y];
+const secondPlayerCardLocation = [coodinator_x,coodinator_y];
+const firstComputerCardLocation = [coodinator_x,coodinator_y];
+const secondComputerCardLocation = [coodinator_x,coodinator_y];
+const firstCommunicationCardLocation = [coodinator_x,coodinator_y];
+const secondCommunicationCardLocation = [coodinator_x,coodinator_y];
+const thirdCommunicationCardLocation = [coodinator_x,coodinator_y];
 const cardLocation = [deck,firstPlayerCard,secondPlayerCard,firstComputerCard,secondComputerCard,firstCommunicationCards, secondCommunicationCards, thirdCommunicationCards ];
 
 class Card{
