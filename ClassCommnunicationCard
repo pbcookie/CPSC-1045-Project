@@ -14,5 +14,8 @@ class comCard{
         }
         console.log(arr);
     }
+    clear(){
+        this.cardArr = [];
+    }
     draw(){}
 }
