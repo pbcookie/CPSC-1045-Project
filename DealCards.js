@@ -1,4 +1,4 @@
-
+//replaced by methods inside deckclass
 
 //Create a function that  draws the first card from the deck array, returns this card, shifts the remaining cards in the array forward by one position。
 //decreases the deck count by one.
