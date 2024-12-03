@@ -40,8 +40,9 @@ class Player{
         )
     }
     getName(){return this.name;} 
-    getPoint(){return this.point;}
+    getScore(){return this.point;}
     addPoint(){this.point += 1;}
+    removePoint(){this.point -= 1;}
     displayHandCard(){
         let arr=[]
         for(let i=0;i<this.cardArr.length;i++){
