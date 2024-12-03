@@ -25,6 +25,7 @@ let hierarchy = ["Straight Flush", "Full House", "Flush", "Straight", "Three of 
 // console.log(testHand);
 
 function countRepeats(playerHand, startIndex) {
+    // counts number of times the given card value appears in the hand
     let count = 0;
 
     for (j = startIndex; j < playerHand.length; j++) { 
@@ -41,7 +42,7 @@ function countRepeats(playerHand, startIndex) {
 }
 
 function OfAKind(playerHand) {
-    // counts the number of times a card value repeats
+    // assigns hand types and strength based on number of repeats
     let onePair = false;
     let twoPair = false;
     let threeOfAKind = false;
@@ -88,7 +89,7 @@ function OfAKind(playerHand) {
 }
 
 function straightCheck(playerHand) {
-    // checks if hand contains a straight
+    // checks if hand contains a straight and returns boolean
     let sorted = playerHand.sort() 
     let isStraight = true;
     for (i = 0; i < sorted.length - 1; i++) {
@@ -100,7 +101,7 @@ function straightCheck(playerHand) {
 }
 
 function flushCheck(playerHand) {
-    // checks if hand contains a flush, i.e. all cards have the same symbol
+    // checks if hand contains a flush, i.e. all cards have the same symbol and returns boolean
     let isFlush = true;
     for (i = 0; i < playerHand.length - 1; i++) {
         if (playerHand[i].getType() != playerHand[i + 1].getType()) {
@@ -111,6 +112,7 @@ function flushCheck(playerHand) {
 }
 
 function bestHand(playerHand) {
+    // evaluates the hand based on hierarchies of strength
     if (flushCheck(playerHand) && straightCheck(playerHand)) {
         handType = hierarchy[0];
     }
