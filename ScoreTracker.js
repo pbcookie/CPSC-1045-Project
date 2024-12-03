@@ -6,8 +6,10 @@ function scoreTracker(player, score) {
         player.addPoint();
     }
     else if (score == -1) { // player lost the round without folding
-        drawScore(player, -1);
-        player.removePoint();
+        if (player.getScore > 0) { // score cannot become negative
+            drawScore(player, -1);
+            player.removePoint();
+        }
     }
     
 }
@@ -21,4 +23,24 @@ function drawScore(player, score) {
     ctx.beginPath;
     ctx.translate(x + score * 100, y); // replace x and y with proper coordinates
     ctx.arc(); // draw a small circle in score tracker to represent point change
+}
+
+function win() {
+    scoreTracker(player, 1);
+    alert("You won the hand!");
+    if (ClassPlayer[human].getScore >= 3) {
+        endRound();
+    }
+}
+
+function lose() {
+    scoreTracker(player, -1);
+    alert("You lost the hand.");
+    if (ClassPlayer[computer].getScore >= 3) {
+        endRound();
+    }
+}
+
+function endRound() {
+    // 
 }
