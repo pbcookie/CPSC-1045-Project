@@ -1,3 +1,5 @@
+//replace by deckclass
+
 //create a array of cards as deck
 
 
