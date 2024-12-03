@@ -4,7 +4,7 @@ class Player{
     //name is the player's name
     constructor(name, playertype){
         this.name = name;
-        this.handCards = [];
+        this.cardArr = [];
         this.point = 0;
         this.playertype = playertype;
         this.handcardLocation = [];
@@ -18,12 +18,13 @@ class Player{
         }
     }
     addCard( newCard ){
-        this.handCards.push(newCard);
+        newCard.setLocation(this.handcardLocation[this.cardArr.length]);//change card loction
+        this.cardArr.push(newCard);
     }
     clearHandCard(){
-        this.handCards = [];
+        this.cardArr = [];
     }
-    getHandCards(){return this.handCards;}  //return a reference of the handcard
+    getHandCards(){return this.cardArr;}  //return a reference of the handcard
     showHandCards(){
         let arr = this.getHandCards();
         console.log(
@@ -43,9 +44,10 @@ class Player{
     addPoint(){this.point += 1;}
     displayHandCard(){
         let arr=[]
-        for(let i=0;i<this.handCards.length;i++){
-            arr.push(this.handCards[i].display());
+        for(let i=0;i<this.cardArr.length;i++){
+            arr.push(this.cardArr[i].display());
         }
         console.log(arr);
     }
+    draw(){}
 }
