@@ -13,7 +13,7 @@ const firstCommunicationCardLocation = [coodinator_x,coodinator_y];
 const secondCommunicationCardLocation = [coodinator_x,coodinator_y];
 const thirdCommunicationCardLocation = [coodinator_x,coodinator_y];
 const cardLocation = [deckLocation,firstPlayerCardLocation,secondPlayerCardLocation,firstComputerCardLocation,secondComputerCardLocation,firstCommunicationCardLocation, secondCommunicationCardLocation, thirdCommunicationCardLocation ];
-const tableLocation = cardLoction.slice(6);// including [firstCommunicationCardLocation, secondCommunicationCardLocation, thirdCommunicationCardLocation]
+const tableLocation = cardLocation.slice(6);// including [firstCommunicationCardLocation, secondCommunicationCardLocation, thirdCommunicationCardLocation]
 class Card{
   //number is Int  from 1 to 8
   //type is string, eg:circle
