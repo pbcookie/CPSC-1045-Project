@@ -22,7 +22,7 @@ function creatNewDeck(num,t1,t2,t3){
 function displayDeck(deckArr){
     let arr = [];
     for(let i = 0; i<deckArr.length;i++){
-        arr.push(deckArr[i].getNum()+deckArr[i].getType());
+        arr.push(deckArr[i].getNum()+ " " +deckArr[i].getType());
     }
     console.log(arr);
 }
