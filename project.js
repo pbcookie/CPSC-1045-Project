@@ -115,10 +115,10 @@ const firstPlayerCard = [coodinator_x, coodinator_y];
 const secondPlayerCard = [coodinator_x, coodinator_y];
 const firstComputerCard = [coodinator_x, coodinator_y];
 const secondComputerCard = [coodinator_x, coodinator_y];
-const firstCommunicationCards = [coodinator_x, coodinator_y];
-const secondCommunicationCards = [coodinator_x, coodinator_y];
-const thirdCommunicationCards = [coodinator_x, coodinator_y];
-const cardLocation = [deck, firstPlayerCard, secondPlayerCard, firstComputerCard, secondComputerCard, firstCommunicationCards, secondCommunicationCards, thirdCommunicationCards];
+const firstCommunityCards = [coodinator_x, coodinator_y];
+const secondCommunityCards = [coodinator_x, coodinator_y];
+const thirdCommunityCards = [coodinator_x, coodinator_y];
+const cardLocation = [deck, firstPlayerCard, secondPlayerCard, firstComputerCard, secondComputerCard, firstCommunityCards, secondCommunityCards, thirdCommunityCards];
 
 class Card {
     //number is Int  from 1 to 8
@@ -181,7 +181,7 @@ class comCard{
 //return the winner's name
 
 //playerA and playerB are the instances of class Player
-//cCardArr is the array of communication card
+//cCardArr is the array of Community cards
 function CompareCard(playerA, playerB, cCardArr) {
     let fivecardA = ArrToStr(playerA.getHandCards().concat(cCardArr));
     let fivecardB = ArrToStr(playerB.getHandCards().concat(cCardArr));
@@ -455,6 +455,7 @@ function roundWin(winner) {
         resetScores();
     }
 }
+
 function resetScores() {
     player1Rounds = 0;
     player2Rounds = 0;
