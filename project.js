@@ -444,11 +444,23 @@ console.log("winner is " + result);
 const guideButton = document.getElementById('guide-button');
 guideButton.addEventListener('click', function() {
     alert(
-        "Welcome to the poker game!\n\n" +
+        "Welcome to Fauxker!\n\n" +
         "Here's how to play:\n" +
         "1. Each player is dealt two cards.\n" +
-        "2. The dealer places five community cards on the table.\n" +
-        "3. Players take turns betting, calling, raising, or folding."
+        "2. The dealer places three community cards on the table.\n" +
+        "3. If you think you're going to win the hand, press the Bet button, otherwise press the Fold button.\n" +
+        "4. If you win the round, you will get a point. However, if you didn't Fold and you lose the round, you will lose a point!\n" +
+        "5. Win three rounds against the computer and you win the match!\n" +
+        "\n" +
+        "Hand strength:\n" +
+        "Straight Flush (Straight and Flush) > Full House (Pair + Three of a Kind)\n" +
+        "Full House > Flush (same suit)\n" +
+        "Flush > Straight (sequential)\n" +
+        "Straight > Three of a Kind\n" +
+        "Three of a Kind > Two Pair\n" +
+        "Two Pair > Pair\n" +
+        "Pair > High Card\n" +
+        "If there's a tie in the type of hand, the higher card wins."
     );
 });
 let player1Score = 0;
