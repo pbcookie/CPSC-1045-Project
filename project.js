@@ -213,30 +213,35 @@ function ArrToStr(arr) {
     //identify which type the cards are
     if (IsStraightFlush(arr)) {
         console.log("StraightFlush");
-        str = "6";
+        str = "7";
     } else {
         if (IsFullHouse(arr)) {
-            str = "5";
+            str = "6";
             console.log("FullHouse");
         } else {
             if (IsFlush(arr)) {
-                str = "4";
+                str = "5";
                 console.log("Flush");
             } else {
-                if (IsThreeofKind(arr)) {
-                    str = "3";
-                    console.log("ThreeofKind");
+                if (IsStraight(arr)) {
+                    str = "4";
+                    console.log("Straight");
                 } else {
-                    if (IsTwoPair(arr)) {
-                        str = "2";
-                        console.log("TwoPair");
+                    if (IsThreeofKind(arr)) {
+                        str = "3";
+                        console.log("ThreeofKind");
                     } else {
-                        if (IsOnePair(arr)) {
-                            str = "1";
-                            console.log("OnePair");
+                        if (IsTwoPair(arr)) {
+                            str = "2";
+                            console.log("TwoPair");
                         } else {
-                            str = "0";
-                            console.log("HighCard");
+                            if (IsOnePair(arr)) {
+                                str = "1";
+                                console.log("OnePair");
+                            } else {
+                                str = "0";
+                                console.log("HighCard");
+                            }
                         }
                     }
                 }
