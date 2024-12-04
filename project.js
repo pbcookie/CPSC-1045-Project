@@ -54,6 +54,58 @@ class Player {
     addPoint() { this.point += 1; }
 }
 
+/*************deck class******************** */
+class Deck{
+    constructor(t1,t2,t3,num){
+        this.cardArr = [];
+        for(let i=0;i<num;i++){
+            this.cardArr.push(new Card(i+1,t1));
+        }
+        for(let i=0;i<num;i++){
+            this.cardArr.push(new Card(i+1,t2));
+        }
+        for(let i=0;i<num;i++){
+            this.cardArr.push(new Card(i+1,t3));
+        }
+        this.location = deckLocation;
+    }
+    /*****************method*************** */
+    display(){
+        let arr = [];
+        for(let i = 0; i<this.cardArr.length;i++){
+            arr.push(this.cardArr[i].getNum()+ " " +this.cardArr[i].getType());
+        }
+        console.log(arr);
+    }
+    shuffle(){
+        let i = this.cardArr.length;
+  
+        while (i != 0) {
+        let j = Math.floor(Math.random() * i);
+        i--;
+        [this.cardArr[i],this.cardArr[j]] = [this.cardArr[j], this.cardArr[i]];
+        }
+    }
+    dealPlayer(player,num){
+        this.cardArr.reverse();
+        for(let i=0;i<num;i++){
+            let newCard =this.cardArr.pop(); 
+            player.addCard(newCard);
+            newCard.setLocation(player.handcardLocation[i]); //change the card's location into player's handcard loction
+        }
+        this.cardArr.reverse();
+    }
+    dealTable(comCard,num){
+        this.cardArr.reverse();
+        for(let i=0;i<num;i++){
+          let newCard =this.cardArr.pop(); 
+          comCard.addCard(newCard);
+        }
+        this.cardArr.reverse();
+    }
+    draw(){};
+}
+
 // 2d array 
 //coodinator of location of card 
 let coodinator_x, coodinator_y;
@@ -100,6 +152,28 @@ class Card {
             }
         }
     }
+}
+
+class comCard{
+    constructor(){
+        this.cardArr =[];
+        this.cardLocation = tableLocation;
+    }
+    addCard(newCard){  
+        newCard.setLocation(this.cardLocation[this.cardArr.length]);//change the card's location
+        this.cardArr.push(newCard);
+    }
+    display(){
+        let arr = []
+        for(let i = 0; i<this.cardArr.length;i++){
+            arr.push(this.cardArr[i].getNum()+ " " +this.cardArr[i].getType());
+        }
+        console.log(arr);
+    }
+    clear(){
+        this.cardArr = [];
+    }
+    draw(){}
 }
 
 //Convert the combination of the players' handcard and the commnunication card into a string of numbers and then compare. 
@@ -176,7 +250,7 @@ function ArrToStr(arr) {
     return str;
 }
 
-// Hierarchy code (Brian's work)
+/** HIERARCHY CODE (Brian's work)
 
 // hand strength hierarchy: strongest to weakest, left to right
 let hierarchy = ["Straight Flush", "Full House", "Flush", "Straight", "Three of a Kind", "Two Pair", "Pair", "High Card"];
@@ -296,16 +370,15 @@ function bestHand(playerHand) {
     }
     return handType;
 }
-
+*/
 
 //five of funtions identying the type of cards and sorting them in order by the type of cards
 
 function IsStraightFlush(arr) {
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[0].type !== arr[i].type) { return false; }
-        if (arr[0].number - arr[i].number !== i) { return false; }
+    if (IsStraight(arr) && IsFlush(arr)) {
+        return true;
     }
-    return true;
+    return false;
 }
 
 function IsFullHouse(arr) {
@@ -320,12 +393,18 @@ function IsFullHouse(arr) {
     return false;
 }
 
-
 function IsFlush(arr) {
     for (let i = 1; i < arr.length; i++) {
         if (arr[0].type !== arr[i].type) { return false; }
     }
     return true;
+}
+
+function IsStraight(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[0].number - arr[i].number !== i) { return false; }
+    }
+    return true;   
 }
 
 function IsThreeofKind(arr) {
@@ -502,3 +581,4 @@ function resetScores() {
         circle.classList.remove('lost');
     });
 }
+
