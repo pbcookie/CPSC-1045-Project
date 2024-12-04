@@ -1,10 +1,15 @@
+//this is the class of comunity card
 class comCard{
     constructor(){
+        //the construcor will create a card array for table card
+        //the object will have the information about the table card's location
         this.cardArr =[];
         this.cardLocation = tableLocation;
     }
     addCard(newCard){  
+        //the new card's location will move to the empty location in the table cards' placement.
         newCard.setLocation(this.cardLocation[this.cardArr.length]);//change the card's location
+        // the card array add a new card object
         this.cardArr.push(newCard);
     }
     display(){
