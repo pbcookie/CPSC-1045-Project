@@ -43,10 +43,10 @@ function lose() {
 
 function endRound() {
     // called after winner/loser/tie is declared in a round or if the player folds
-    if (ClassPlayer[human].getScore >= 3) {
+    if (Player[human].getScore >= 3) {
         endMatch(); 
     }
-    else if (ClassPlayer[computer].getScore >= 3) {
+    else if (Player[computer].getScore >= 3) {
         endMatch();
     }
     else {
