@@ -439,3 +439,54 @@ console.log(
 
 let result = CompareCard(playerA, playerB, commnunicationCard);
 console.log("winner is " + result);
+
+
+const guideButton = document.getElementById('guide-button');
+guideButton.addEventListener('click', function() {
+    alert(
+        "Welcome to the poker game!\n\n" +
+        "Here's how to play:\n" +
+        "1. Each player is dealt two cards.\n" +
+        "2. The dealer places five community cards on the table.\n" +
+        "3. Players take turns betting, calling, raising, or folding."
+    );
+});
+let player1Score = 0;
+let player2Score = 0;
+
+let player1Rounds = 0;
+let player2Rounds = 0;
+
+function updateScore(player, round) {
+    const scoreCircle = document.getElementById(`${player}-round${round}`);
+    if (scoreCircle) {
+        scoreCircle.classList.add('won');
+    }
+}
+
+function roundWin(winner) {
+    if (winner === 'player1') {
+        player1Rounds++;
+        updateScore('player1', player1Rounds);
+    } else if (winner === 'player2') {
+        player2Rounds++;
+        updateScore('player2', player2Rounds);
+    }
+
+    if (player1Rounds === 3) {
+        alert('Player 1 wins the match!');
+        resetScores();
+    } else if (player2Rounds === 3) {
+        alert('Player 2 wins the match!');
+        resetScores();
+    }
+}
+function resetScores() {
+    player1Rounds = 0;
+    player2Rounds = 0;
+
+    document.querySelectorAll('.score-circle').forEach(circle => {
+        circle.classList.remove('won');
+        circle.classList.remove('lost');
+    });
+}
