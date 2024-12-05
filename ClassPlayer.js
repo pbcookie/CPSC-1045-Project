@@ -50,5 +50,9 @@ class Player{
         }
         console.log(arr);
     }
-    draw(){}
+     draw(){
+        for(let i=0;i<this.cardArr.length;i++){
+            this.cardArr[i].draw();
+        }
+    }
 }
