@@ -397,14 +397,10 @@ function IsOnePair(arr) {
     return false;
 }
 
-//test
-
-
-
 ///player test
 let playerA = new Player("Jack");
 let playerB = new Player("Queen");
-let commnunicationCard = [];
+let commnunityCard = [];
 
 let newCard;
 
@@ -457,13 +453,13 @@ for (let k = 0; k < 3; k++) {
             typecolor = "green";
     }
     newCard = new Card(Math.floor(Math.random() * (8 - 1 + 1)) + 1, typecolor);
-    commnunicationCard.push(newCard);
+    commnunityCard.push(newCard);
 }
 console.log("community card is :");
 console.log(
     (
         function () {
-            let arr = commnunicationCard;
+            let arr = commnunityCard;
             let result = [];
             for (let i = 0; i < arr.length; i++) {
                 result.push(arr[i].number + arr[i].type);
@@ -473,7 +469,7 @@ console.log(
     )()
 )
 
-let result = CompareCard(playerA, playerB, commnunicationCard);
+let result = CompareCard(playerA, playerB, commnunityCard);
 console.log("winner is " + result);
 
 let player1Score = 0;
