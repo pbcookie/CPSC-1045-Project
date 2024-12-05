@@ -109,8 +109,8 @@ class Player {
     }
 }
 
-new Player(playerName, "human");
-new Player(computerName, "computer");
+let humanPlayer = new Player(playerName, "human");
+let ComputerPlayer = new Player(computerName, "computer");
 
 /*************deck class******************** */
 class Deck {
@@ -233,22 +233,24 @@ let player2Score = 0;
 let player1Rounds = 0;
 let player2Rounds = 0;
 
+let currentDeck;
+
 // Start the game
 newGame();
 
 // Call any functions related to the beginning of the game (only keeping Players)
 function newGame() {
     resetScores();
-    new Deck("circle", "triangle", "diamond", 8);
+    currentDeck = new Deck("circle", "triangle", "diamond", 8);
     newRound();
 }
 
 // Calls all of the necessary functions to start a new round
 function newRound() {
-    Deck.shuffle();
-    Deck.dealPlayer(playerName, 2);
-    Deck.dealPlayer(computerName, 2);
-    Deck.dealTable(3);
+    currentDeck.shuffle();
+    currentDeck.dealPlayer(humanPlayer, 2);
+    currentDeck.dealPlayer(ComputerPlayer, 2);
+    currentDeck.dealTable(3);
 }
 
 //Convert the combination of the players' handcard and the community card into a string of numbers and then compare. 
