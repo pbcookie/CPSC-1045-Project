@@ -227,6 +227,30 @@ class comCard {
     }
 }
 
+let player1Score = 0;
+let player2Score = 0;
+
+let player1Rounds = 0;
+let player2Rounds = 0;
+
+// Start the game
+newGame();
+
+// Call any functions related to the beginning of the game (only keeping Players)
+function newGame() {
+    resetScores();
+    new Deck("circle", "triangle", "diamond", 8);
+    newRound();
+}
+
+// Calls all of the necessary functions to start a new round
+function newRound() {
+    Deck.shuffle();
+    Deck.dealPlayer(playerName, 2);
+    Deck.dealPlayer(computerName, 2);
+    Deck.dealTable(3);
+}
+
 //Convert the combination of the players' handcard and the community card into a string of numbers and then compare. 
 //display palyers' handcard
 //return the winner's name
@@ -471,12 +495,6 @@ console.log(
 
 let result = CompareCard(playerA, playerB, communityCard);
 console.log("winner is " + result);
-
-let player1Score = 0;
-let player2Score = 0;
-
-let player1Rounds = 0;
-let player2Rounds = 0;
 
 /************************************************************draw function******************************************************************/
 
