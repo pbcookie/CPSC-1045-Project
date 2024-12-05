@@ -20,6 +20,7 @@ class Player{
     addCard( newCard ){
         newCard.setLocation(this.handcardLocation[this.cardArr.length]);//change card loction
         this.cardArr.push(newCard);
+        newCard.setFace(true);
     }
     clearHandCard(){
         this.cardArr = [];
