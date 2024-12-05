@@ -11,6 +11,8 @@ class comCard{
         newCard.setLocation(this.cardLocation[this.cardArr.length]);//change the card's location
         // the card array add a new card object
         this.cardArr.push(newCard);
+        //Flip the card
+        newCard.setFace(true);
     }
     display(){
         let arr = []
