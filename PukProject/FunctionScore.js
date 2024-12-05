@@ -96,8 +96,7 @@ function scoreTracker(player, score) {
     }
 }
 
-//test
-drawScore(playerName, 1);
+
 
 // Player is the player whose tracker is being changed; Score is the value representing win or loss
 function drawScore(player, score) {
