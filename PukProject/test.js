@@ -107,3 +107,5 @@ tableCards.display();
 newdeck.display();
 
 /****************************************************/
+//test
+drawScore(playerName, 1);
