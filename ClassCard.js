@@ -4,16 +4,16 @@
 //coodinator of location of card 
 let coodinator_x,coodinator_y;
 
-const deckLocation = [coodinator_x,coodinator_y];
-const firstPlayerCardLocation = [coodinator_x,coodinator_y];
-const secondPlayerCardLocation = [coodinator_x,coodinator_y];
-const firstComputerCardLocation = [coodinator_x,coodinator_y];
-const secondComputerCardLocation = [coodinator_x,coodinator_y];
-const firstCommunicationCardLocation = [coodinator_x,coodinator_y];
-const secondCommunicationCardLocation = [coodinator_x,coodinator_y];
-const thirdCommunicationCardLocation = [coodinator_x,coodinator_y];
-const cardLocation = [deckLocation,firstPlayerCardLocation,secondPlayerCardLocation,firstComputerCardLocation,secondComputerCardLocation,firstCommunicationCardLocation, secondCommunicationCardLocation, thirdCommunicationCardLocation ];
-const tableLocation = cardLocation.slice(6);// including [firstCommunicationCardLocation, secondCommunicationCardLocation, thirdCommunicationCardLocation]
+const deckLocation = [coodinator_x, coodinator_y];
+const firstPlayerCardLocation = [coodinator_x, coodinator_y];
+const secondPlayerCardLocation = [coodinator_x, coodinator_y];
+const firstComputerCardLocation = [coodinator_x, coodinator_y];
+const secondComputerCardLocation = [coodinator_x, coodinator_y];
+const firstCommunityCardLocation = [coodinator_x, coodinator_y];
+const secondCommunityCardLocation = [coodinator_x, coodinator_y];
+const thirdCommunityCardLocation = [coodinator_x, coodinator_y];
+const cardLocation = [deckLocation, firstPlayerCardLocation, secondPlayerCardLocation, firstComputerCardLocation, secondComputerCardLocation, firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation];
+const tableLocation = cardLocation.slice(6);// including [firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation]
 class Card{
   //number is Int  from 1 to 8
   //type is string, eg:circle
@@ -37,7 +37,7 @@ class Card{
   draw(ctx){
     if(this.location != cardLocation[0]){//this card is  in deck, no need to be drawed
       if(this.faceUp){//this card is face up
-        drawface(ctx, this, this.location[0], this.location[1], this.ch, this.cw);
+        drawCard(this.location[0], this.location[1], this.cw, this.ch, this.number, this.type);
         // this.location[0] is the coodination-x
         // this.location[1] is the coodination-y
       }else{
