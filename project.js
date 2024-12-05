@@ -1,59 +1,73 @@
+// Set the player names
+let playerName = prompt("Greetings, player! Enter your name:")
+document.getElementById("human-name").innerHTML = playerName;
+
+let computerNameArr = ["Queen", "Jack", "King", "Ace", "Shark", "Negreanu"]
+let computerName = computerNameArr[parseInt(Math.random() * 6)];
+
+document.getElementById("computer-name").innerHTML = computerName;
+
+// 'how to play' text
+let guideText = "How to play the game:\n" +
+    "1. Each player is dealt two cards.\n" +
+    "2. Dealer reveals three community cards, one at a time.\n" +
+    "3. After each reveal, press Bet to continue or Fold to escape and deal a new hand.\n" +
+    "4. If you win a hand, you get a point. If you lose a hand, you will lose a point!\n" +
+    "5. Score three points against the computer and you win the match!\n" +
+    "... (Press OK to see the hand strength guide or Cancel to close)";
+
+let handStrengthText = "Hand strength:\n" +
+    "Straight Flush > Full House (Pair + Three of a Kind)\n" +
+    "Full House > Flush (all same suit)\n" +
+    "Flush > Straight (all sequential)\n" +
+    "Straight > Three of a Kind\n" +
+    "Three of a Kind > Two Pair\n" +
+    "Two Pair > Pair\n" +
+    "If there's a tie in the type of hand, the higher card wins.";
+
+// guide button opens the how to play text
 const guideButton = document.getElementById('guide-button');
-guideButton.addEventListener('click', function() {
-    alert(
-        "Welcome to the game!\n\n" +
-        "Here's how to play:\n" +
-        "1. Each player is dealt two cards.\n" +
-        "2. The dealer places three community cards on the table.\n" +
-        "3. If you think you're going to win the hand, press the Bet button, otherwise press the Fold button.\n" +
-        "4. If you win the round, you will get a point. However, if you didn't Fold and you lose the round, you will lose a point!\n" +
-        "5. Win three rounds against the computer and you win the match!\n" +
-        "\n" +
-        "Hand strength:\n" +
-        "Straight Flush (Straight and Flush) > Full House (Pair + Three of a Kind)\n" +
-        "Full House > Flush (same suit)\n" +
-        "Flush > Straight (sequential)\n" +
-        "Straight > Three of a Kind\n" +
-        "Three of a Kind > Two Pair\n" +
-        "Two Pair > Pair\n" +
-        "Pair > High Card\n" +
-        "If there's a tie in the type of hand, the higher card wins."
-    );
+guideButton.addEventListener('click', function () {
+    confirm(guideText);
 });
 
-class Player{
+if (confirm(guideText) == true) {
+    alert(handStrengthText);
+}
+
+class Player {
     //name is the player's name
-    constructor(name, playertype){
+    constructor(name, playertype) {
         this.name = name;
         this.cardArr = [];
         this.point = 0;
         this.playertype = playertype;
         this.handcardLocation = [];
-        if(playertype == "player"){
+        if (playertype == "human") {
             this.handcardLocation.push(cardLocation[1]);//firstPlayerCardLocation
             this.handcardLocation.push(cardLocation[2]);//secondPlayerCardLocation
         }
-        if(playertype == "computer"){
+        if (playertype == "computer") {
             this.handcardLocation.push(cardLocation[3]);//firstComputerCardLocation
             this.handcardLocation.push(cardLocation[4]);//secondComputerCardLocation
         }
     }
-    addCard( newCard ){
+    addCard(newCard) {
         newCard.setLocation(this.handcardLocation[this.cardArr.length]);//change card loction
         this.cardArr.push(newCard);
         newCard.setFace(true);
     }
-    clearHandCard(){
+    clearHandCard() {
         this.cardArr = [];
     }
-    getHandCards(){return this.cardArr;}  //return a reference of the handcard
-    showHandCards(){
+    getHandCards() { return this.cardArr; }  //return a reference of the handcard
+    showHandCards() {
         let arr = this.getHandCards();
         console.log(
             (
-                function(){
+                function () {
                     let result = [];
-                    for(let i=0;i<arr.length;i++){
+                    for (let i = 0; i < arr.length; i++) {
                         result.push(arr[i].number + arr[i].type);
                     }
                     return result;
@@ -61,75 +75,78 @@ class Player{
             )()
         )
     }
-    getName(){return this.name;} 
-    getScore(){return this.point;}
-    addPoint(){this.point += 1;}
-    removePoint(){this.point -= 1;}
-    displayHandCard(){
-        let arr=[]
-        for(let i=0;i<this.cardArr.length;i++){
+    getName() { return this.name; }
+    getScore() { return this.point; }
+    addPoint() { this.point += 1; }
+    removePoint() { this.point -= 1; }
+    displayHandCard() {
+        let arr = []
+        for (let i = 0; i < this.cardArr.length; i++) {
             arr.push(this.cardArr[i].display());
         }
         console.log(arr);
     }
     /*draw player's handcards*/
-    draw(){
-        for(let i=0;i<this.cardArr.length;i++){
+    draw() {
+        for (let i = 0; i < this.cardArr.length; i++) {
             this.cardArr[i].draw();
         }
     }
 }
 
+new Player(playerName, "human");
+new Player(computerName, "computer");
+
 /*************deck class******************** */
-class Deck{
-    constructor(t1,t2,t3,num){
+class Deck {
+    constructor(t1, t2, t3, num) {
         this.cardArr = [];
-        for(let i=0;i<num;i++){
-            this.cardArr.push(new Card(i+1,t1));
+        for (let i = 0; i < num; i++) {
+            this.cardArr.push(new Card(i + 1, t1));
         }
-        for(let i=0;i<num;i++){
-            this.cardArr.push(new Card(i+1,t2));
+        for (let i = 0; i < num; i++) {
+            this.cardArr.push(new Card(i + 1, t2));
         }
-        for(let i=0;i<num;i++){
-            this.cardArr.push(new Card(i+1,t3));
+        for (let i = 0; i < num; i++) {
+            this.cardArr.push(new Card(i + 1, t3));
         }
         this.location = deckLocation;
     }
     /*****************method*************** */
-    display(){
+    display() {
         let arr = [];
-        for(let i = 0; i<this.cardArr.length;i++){
-            arr.push(this.cardArr[i].getNum()+ " " +this.cardArr[i].getType());
+        for (let i = 0; i < this.cardArr.length; i++) {
+            arr.push(this.cardArr[i].getNum() + " " + this.cardArr[i].getType());
         }
         console.log(arr);
     }
-    shuffle(){
+    shuffle() {
         let i = this.cardArr.length;
-  
+
         while (i != 0) {
-        let j = Math.floor(Math.random() * i);
-        i--;
-        [this.cardArr[i],this.cardArr[j]] = [this.cardArr[j], this.cardArr[i]];
+            let j = Math.floor(Math.random() * i);
+            i--;
+            [this.cardArr[i], this.cardArr[j]] = [this.cardArr[j], this.cardArr[i]];
         }
     }
-    dealPlayer(player,num){
+    dealPlayer(player, num) {
         this.cardArr.reverse();
-        for(let i=0;i<num;i++){
-            let newCard =this.cardArr.pop(); 
+        for (let i = 0; i < num; i++) {
+            let newCard = this.cardArr.pop();
             player.addCard(newCard);
             newCard.setLocation(player.handcardLocation[i]); //change the card's location into player's handcard loction
         }
         this.cardArr.reverse();
     }
-    dealTable(comCard,num){
+    dealTable(comCard, num) {
         this.cardArr.reverse();
-        for(let i=0;i<num;i++){
-          let newCard =this.cardArr.pop(); 
-          comCard.addCard(newCard);
+        for (let i = 0; i < num; i++) {
+            let newCard = this.cardArr.pop();
+            comCard.addCard(newCard);
         }
         this.cardArr.reverse();
     }
-    draw(){};
+    draw() { };
 }
 
 // 2d array 
@@ -137,7 +154,7 @@ class Deck{
 let coodinator_x, coodinator_y;
 
 const deckLocation = [coodinator_x, coodinator_y];
-const firstPlayerCarLocationd = [coodinator_x, coodinator_y];
+const firstPlayerCardLocation = [coodinator_x, coodinator_y];
 const secondPlayerCardLocation = [coodinator_x, coodinator_y];
 const firstComputerCardLocation = [coodinator_x, coodinator_y];
 const secondComputerCardLocation = [coodinator_x, coodinator_y];
@@ -146,64 +163,64 @@ const secondCommunityCardLocation = [coodinator_x, coodinator_y];
 const thirdCommunityCardLocation = [coodinator_x, coodinator_y];
 const cardLocation = [deck, firstPlayerCardLocation, secondPlayerCardLocation, firstComputerCardLocation, secondComputerCardLocation, firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation];
 const tableLocation = cardLocation.slice(6);// including [firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation]
-class Card{
+class Card {
     //number is Int  from 1 to 8
     //type is string, eg:circle
     //ch is the height of card
     //cw is the width of card
-    constructor(number, type, ch = 120, cw = 80){
-      this.number = number;
-      this.type = type;
-      this.location = cardLocation[0]; //this card is initial in the deck
-      this.faceUp = false;// this card is face down
-      this.ch = ch;
-      this.cw = cw;
+    constructor(number, type, ch = 120, cw = 80) {
+        this.number = number;
+        this.type = type;
+        this.location = cardLocation[0]; //this card is initial in the deck
+        this.faceUp = false;// this card is face down
+        this.ch = ch;
+        this.cw = cw;
     }
-   
-    getType(){return this.type;}
-    getNum(){return this.number;}
-    getLocation(){return this.location;}
-    setLocation( newLocation ){this.location = newLocation;}
-    isFace(){return this.faceUp;}  
-    setFace(cover){this.faceUp = cover;}//If you want to reveal this card. use this method to set faceUp to true
-    draw(){
-      if(this.location != cardLocation[0]){//this card is  in deck, no need to be drawed
-        if(this.faceUp){//this card is face up
-          drawCard(this.location[0], this.location[1], this.cw, this.ch, this.number, this.type);
-          // this.location[0] is the coodination-x
-          // this.location[1] is the coodination-y
-        }else{
-          //this card is face down
-          drawback(ctx, this.location[0], this.location[1], this.ch, this.cw);
+
+    getType() { return this.type; }
+    getNum() { return this.number; }
+    getLocation() { return this.location; }
+    setLocation(newLocation) { this.location = newLocation; }
+    isFace() { return this.faceUp; }
+    setFace(cover) { this.faceUp = cover; }//If you want to reveal this card. use this method to set faceUp to true
+    draw() {
+        if (this.location != cardLocation[0]) {//this card is  in deck, no need to be drawed
+            if (this.faceUp) {//this card is face up
+                drawCard(this.location[0], this.location[1], this.cw, this.ch, this.number, this.type);
+                // this.location[0] is the coodination-x
+                // this.location[1] is the coodination-y
+            } else {
+                //this card is face down
+                drawback(ctx, this.location[0], this.location[1], this.ch, this.cw);
+            }
         }
-      }
     }
-    display(){
-      return this.number + " " + this.type;
+    display() {
+        return this.number + " " + this.type;
     }
-  }
-class comCard{
-    constructor(){
-        this.cardArr =[];
+}
+class comCard {
+    constructor() {
+        this.cardArr = [];
         this.cardLocation = tableLocation;
     }
-    addCard(newCard){  
+    addCard(newCard) {
         newCard.setLocation(this.cardLocation[this.cardArr.length]);//change the card's location
         this.cardArr.push(newCard);
         newCard.setFace(true);
     }
-    display(){
+    display() {
         let arr = []
-        for(let i = 0; i<this.cardArr.length;i++){
-            arr.push(this.cardArr[i].getNum()+ " " +this.cardArr[i].getType());
+        for (let i = 0; i < this.cardArr.length; i++) {
+            arr.push(this.cardArr[i].getNum() + " " + this.cardArr[i].getType());
         }
         console.log(arr);
     }
-    clear(){
+    clear() {
         this.cardArr = [];
     }
-    draw(){
-        for(let i=0;i<this.cardArr.length;i++){
+    draw() {
+        for (let i = 0; i < this.cardArr.length; i++) {
             this.cardArr[i].draw();
         }
     }
@@ -320,7 +337,7 @@ function IsStraight(arr) {
     for (let i = 1; i < arr.length; i++) {
         if (arr[0].number - arr[i].number !== i) { return false; }
     }
-    return true;   
+    return true;
 }
 
 function IsThreeofKind(arr) {
@@ -480,7 +497,7 @@ const SHAPES = {
 
 // Draw cards
 function drawDeck() {
-    let x = 10, y = 20; 
+    let x = 10, y = 20;
     const padding = 40;
 
     // Loop through numbers and shapes
@@ -523,8 +540,8 @@ function drawCard(x, y, width, height, number, shapeName) {
 
 // Different shape count and positions
 function drawShapes(centerX, centerY, count, drawShape) {
-    const colSpacing = 40; 
-    const rowSpacing = 40; 
+    const colSpacing = 40;
+    const rowSpacing = 40;
 
     let positions = [];
     switch (count) {
@@ -573,31 +590,31 @@ function drawShapes(centerX, centerY, count, drawShape) {
             break;
         case 7:
             positions = [
-                { x: centerX - colSpacing / 2.5, y: centerY - rowSpacing * 1 }, 
-                { x: centerX + colSpacing / 1.6, y: centerY - rowSpacing * 1 }, 
-                { x: centerX + colSpacing / 10, y: centerY - rowSpacing * 0.3 }, 
-                { x: centerX - colSpacing / 2.5, y: centerY + rowSpacing * 0.5 }, 
-                { x: centerX + colSpacing / 1.6, y: centerY + rowSpacing * 0.5 }, 
-                { x: centerX - colSpacing / 2.4, y: centerY + rowSpacing * 1.5 }, 
-                { x: centerX + colSpacing / 1.6, y: centerY + rowSpacing * 1.5 } 
+                { x: centerX - colSpacing / 2.5, y: centerY - rowSpacing * 1 },
+                { x: centerX + colSpacing / 1.6, y: centerY - rowSpacing * 1 },
+                { x: centerX + colSpacing / 10, y: centerY - rowSpacing * 0.3 },
+                { x: centerX - colSpacing / 2.5, y: centerY + rowSpacing * 0.5 },
+                { x: centerX + colSpacing / 1.6, y: centerY + rowSpacing * 0.5 },
+                { x: centerX - colSpacing / 2.4, y: centerY + rowSpacing * 1.5 },
+                { x: centerX + colSpacing / 1.6, y: centerY + rowSpacing * 1.5 }
             ];
             break;
         case 8:
-            const tighterColSpacing = colSpacing / 2.3; 
-            const tighterRowSpacing = rowSpacing / 1.65; 
+            const tighterColSpacing = colSpacing / 2.3;
+            const tighterRowSpacing = rowSpacing / 1.65;
             const yOffset = 6;
             positions = [
-                { x: centerX - tighterColSpacing, y: centerY - tighterRowSpacing * 2 + yOffset }, 
-                { x: centerX + tighterColSpacing, y: centerY - tighterRowSpacing * 2 + yOffset }, 
-                { x: centerX, y: centerY - tighterRowSpacing + yOffset },                       
-                { x: centerX - tighterColSpacing, y: centerY + yOffset },                     
-                { x: centerX + tighterColSpacing, y: centerY + yOffset },                     
-                { x: centerX, y: centerY + tighterRowSpacing + yOffset },                     
-                { x: centerX - tighterColSpacing, y: centerY + tighterRowSpacing * 2 + yOffset }, 
-                { x: centerX + tighterColSpacing, y: centerY + tighterRowSpacing * 2 + yOffset }  
+                { x: centerX - tighterColSpacing, y: centerY - tighterRowSpacing * 2 + yOffset },
+                { x: centerX + tighterColSpacing, y: centerY - tighterRowSpacing * 2 + yOffset },
+                { x: centerX, y: centerY - tighterRowSpacing + yOffset },
+                { x: centerX - tighterColSpacing, y: centerY + yOffset },
+                { x: centerX + tighterColSpacing, y: centerY + yOffset },
+                { x: centerX, y: centerY + tighterRowSpacing + yOffset },
+                { x: centerX - tighterColSpacing, y: centerY + tighterRowSpacing * 2 + yOffset },
+                { x: centerX + tighterColSpacing, y: centerY + tighterRowSpacing * 2 + yOffset }
             ];
             break;
-        }
+    }
     // Draw shapes based on calculated positions
     positions.forEach(({ x, y }) => drawShape(x, y));
 }
@@ -606,7 +623,7 @@ function drawShapes(centerX, centerY, count, drawShape) {
 function drawCircle(centerX, centerY, count) {
     drawShapes(centerX, centerY, count, (x, y) => {
         ctx.beginPath();
-        ctx.arc(x, y, 13.5, 0, Math.PI * 2); 
+        ctx.arc(x, y, 13.5, 0, Math.PI * 2);
         ctx.fillStyle = 'blue';
         ctx.fill();
     });
@@ -616,10 +633,10 @@ function drawDiamond(centerX, centerY, count) {
     drawShapes(centerX, centerY, count, (x, y) => {
         const size = 25;
         ctx.beginPath();
-        ctx.moveTo(x, y - size / 2); 
-        ctx.lineTo(x - size / 2, y); 
-        ctx.lineTo(x, y + size / 2); 
-        ctx.lineTo(x + size / 2, y); 
+        ctx.moveTo(x, y - size / 2);
+        ctx.lineTo(x - size / 2, y);
+        ctx.lineTo(x, y + size / 2);
+        ctx.lineTo(x + size / 2, y);
         ctx.closePath();
         ctx.fillStyle = 'red';
         ctx.fill();
@@ -630,9 +647,9 @@ function drawTriangle(centerX, centerY, count) {
     drawShapes(centerX, centerY, count, (x, y) => {
         const size = 25;
         ctx.beginPath();
-        ctx.moveTo(x, y - size / 2); 
-        ctx.lineTo(x - size / 2, y + size / 2); 
-        ctx.lineTo(x + size / 2, y + size / 2); 
+        ctx.moveTo(x, y - size / 2);
+        ctx.lineTo(x - size / 2, y + size / 2);
+        ctx.lineTo(x + size / 2, y + size / 2);
         ctx.closePath();
         ctx.fillStyle = 'green';
         ctx.fill();
@@ -641,21 +658,21 @@ function drawTriangle(centerX, centerY, count) {
 
 /****************************************************************************************************************************************/
 /**************************draw testing***************/
- firstPlayerCardLocation = [900, 780];
- secondPlayerCardLocation = [1000, 780];
- firstComputerCardLocation = [900, 580];
- secondComputerCardLocation = [1000, 580];
- firstCommunityCardLocation = [850, 680];
+firstPlayerCardLocation = [900, 780];
+secondPlayerCardLocation = [1000, 780];
+firstComputerCardLocation = [900, 580];
+secondComputerCardLocation = [1000, 580];
+firstCommunityCardLocation = [850, 680];
 secondCommunityCardLocation = [950, 680];
- thirdCommunityCardLocation = [1050, 680];
+thirdCommunityCardLocation = [1050, 680];
 
 const canvas = document.getElementById('pokerCard');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let newdeck = new Deck("Circle","Diamond","Triangle",8);
-for(let i =0 ;i< 5;i++){
+let newdeck = new Deck("Circle", "Diamond", "Triangle", 8);
+for (let i = 0; i < 5; i++) {
     newdeck.display();
     newdeck.shuffle();
 }
@@ -663,9 +680,9 @@ newdeck.display();
 let newguy = new Player("Ben", "player");
 let tableCards = new comCard();
 
-newdeck.dealPlayer(newguy,2);
+newdeck.dealPlayer(newguy, 2);
 newguy.draw();
-newdeck.dealTable(tableCards,3);
+newdeck.dealTable(tableCards, 3);
 /* waiting for drawbackcard() function
 tableCards.draw();
 */
@@ -708,6 +725,94 @@ function resetScores() {
         circle.classList.remove('won');
         circle.classList.remove('lost');
     });
+}
+
+/************************************************************Score tracker******************************************************************/
+
+// Player is the player whose tracker is being changed; Score is the value passed from the round result
+function scoreTracker(player, score) {
+    // note: no change to score if player folded
+    let points = player.getScore();
+    let lastPoint = false;
+
+    switch (score) {
+        case 1:
+            // player won the round
+            drawScore(player, 1);
+            player.addPoint();
+            switch (player.playertype) {
+                case "human":
+                    // human player won their 3rd point
+                    if (points >= 3) {
+                        alert("You won the match! Great game!");
+                        lastPoint = true;
+                    }
+                    else {
+                        alert("You won the hand!");
+                        newRound();
+                    }
+                    break
+                case "computer":
+                    // computer player won their 3rd point
+                    if (points >= 3) {
+                        alert("You lost the match. Try a new game!")
+                        lastPoint = true;
+                    }
+                    break;
+                default:
+                    console.log("Error: scoreTracker switch case 'playertype'");
+                    break;
+            }
+            break;
+        case -1:
+            // player lost the round without folding
+            if (points > 0) { // score cannot become negative
+                drawScore(player, -1);
+                player.removePoint();
+            }
+            if (player.playertype == "human") {
+                alert("You lost the hand.");
+                newRound();
+            }
+            break;
+        case 0:
+            // human and computer hands strengths are equal
+            alert("Tie round!");
+            newRound();
+            break;
+        default:
+            console.log("Error: scoreTracker switch case 'score'");
+            break;
+    }
+
+    if (lastPoint) {
+        endMatch();
+    }
+}
+
+//test
+drawScore(playerName, 1);
+
+// Player is the player whose tracker is being changed; Score is the value representing win or loss
+function drawScore(player, score) {
+    let playerScore = player.getScore();
+
+    // change the score dots gray by default
+    for (i = 0; i < 3; i++) {
+        let dot = document.getElementById(player + "-point" + i);
+        dot.style.backgroundColor = "gray";
+    }
+
+    // for each point the player has, turn a score dot green
+    for (i = 0; i < playerScore; i++) {
+        let dot = document.getElementById(player + "-point" + i);
+        dot.style.backgroundColor = "green";
+    }
+}
+
+// call canvas clear function(s), call new game function
+function endMatch() {
+    // TODO: cleanup and prepare for next game
 }
 
 /** HIERARCHY CODE (Brian's work)

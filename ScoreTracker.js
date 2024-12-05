@@ -9,7 +9,7 @@ function scoreTracker(player, score) {
         // player won the round
             drawScore(player, 1);
             player.addPoint();
-            switch (player.playerType) {
+            switch (player.playertype) {
                 case "human":
                     // human player won their 3rd point
                     if (points >= 3) {
@@ -61,25 +61,18 @@ function scoreTracker(player, score) {
 
 // Player is the player whose tracker is being changed; Score is the value representing win or loss
 function drawScore(player, score) {
-    // draws the dots on the score tracker
-    let tracker = document.getElementById(player + "tracker");
-    // TODO: make sure the score tracker is named appropriately to work with the other functions being fed parameter "player"
-    let canvas = document.getElementById(player);
-    let ctx = canvas.getContext("2d");
     let score = player.getScore();
 
-    // Draw gray circles representing empty score
+    // change the score dots gray by default
     for (i = 0; i < 3; i++) {
-        ctx.beginPath;
-        ctx.translate(x + score * 100, y); // TODO: replace x and y with proper coordinates
-        ctx.arc(); // TODO: draw a small gray circle representing an empty score
+        let dot = document.getElementById(player + "-point" + i);
+        dot.style.backgroundColor = "gray";
     }
 
-    // for each point the player has, draw an according dot on the score tracker
+    // for each point the player has, turn a score dot green
     for (i = 0; i < score; i++) {
-        ctx.beginPath;
-        ctx.translate(x + score * 100, y); // TODO: replace x and y with proper coordinates
-        ctx.arc(); // TODO: draw a small green circle in score tracker to represent point change   
+        let dot = document.getElementById(player + "-point" + i);
+        dot.style.backgroundColor = "green";
     }
 }
 
