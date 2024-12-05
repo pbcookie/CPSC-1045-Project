@@ -35,8 +35,23 @@ if (confirm(guideText) == true) {
     alert(handStrengthText);
 }
 
+// 2d array 
+//coodinator of location of card 
+let coodinator_x, coodinator_y;
+
+const deckLocation = [coodinator_x, coodinator_y];
+const firstPlayerCardLocation = [coodinator_x, coodinator_y];
+const secondPlayerCardLocation = [coodinator_x, coodinator_y];
+const firstComputerCardLocation = [coodinator_x, coodinator_y];
+const secondComputerCardLocation = [coodinator_x, coodinator_y];
+const firstCommunityCardLocation = [coodinator_x, coodinator_y];
+const secondCommunityCardLocation = [coodinator_x, coodinator_y];
+const thirdCommunityCardLocation = [coodinator_x, coodinator_y];
+const cardLocation = [deck, firstPlayerCardLocation, secondPlayerCardLocation, firstComputerCardLocation, secondComputerCardLocation, firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation];
+const tableLocation = cardLocation.slice(6);// including [firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation]
+
 class Player {
-    //name is the player's name
+    //name is the player's name, playertype is either computer or human
     constructor(name, playertype) {
         this.name = name;
         this.cardArr = [];
@@ -149,20 +164,6 @@ class Deck {
     draw() { };
 }
 
-// 2d array 
-//coodinator of location of card 
-let coodinator_x, coodinator_y;
-
-const deckLocation = [coodinator_x, coodinator_y];
-const firstPlayerCardLocation = [coodinator_x, coodinator_y];
-const secondPlayerCardLocation = [coodinator_x, coodinator_y];
-const firstComputerCardLocation = [coodinator_x, coodinator_y];
-const secondComputerCardLocation = [coodinator_x, coodinator_y];
-const firstCommunityCardLocation = [coodinator_x, coodinator_y];
-const secondCommunityCardLocation = [coodinator_x, coodinator_y];
-const thirdCommunityCardLocation = [coodinator_x, coodinator_y];
-const cardLocation = [deck, firstPlayerCardLocation, secondPlayerCardLocation, firstComputerCardLocation, secondComputerCardLocation, firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation];
-const tableLocation = cardLocation.slice(6);// including [firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation]
 class Card {
     //number is Int  from 1 to 8
     //type is string, eg:circle
