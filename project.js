@@ -227,7 +227,7 @@ class comCard {
     }
 }
 
-//Convert the combination of the players' handcard and the commnunication card into a string of numbers and then compare. 
+//Convert the combination of the players' handcard and the community card into a string of numbers and then compare. 
 //display palyers' handcard
 //return the winner's name
 
@@ -400,7 +400,7 @@ function IsOnePair(arr) {
 ///player test
 let playerA = new Player("Jack");
 let playerB = new Player("Queen");
-let commnunityCard = [];
+let communityCard = [];
 
 let newCard;
 
@@ -453,13 +453,13 @@ for (let k = 0; k < 3; k++) {
             typecolor = "green";
     }
     newCard = new Card(Math.floor(Math.random() * (8 - 1 + 1)) + 1, typecolor);
-    commnunityCard.push(newCard);
+    communityCard.push(newCard);
 }
 console.log("community card is :");
 console.log(
     (
         function () {
-            let arr = commnunityCard;
+            let arr = communityCard;
             let result = [];
             for (let i = 0; i < arr.length; i++) {
                 result.push(arr[i].number + arr[i].type);
@@ -469,7 +469,7 @@ console.log(
     )()
 )
 
-let result = CompareCard(playerA, playerB, commnunityCard);
+let result = CompareCard(playerA, playerB, communityCard);
 console.log("winner is " + result);
 
 let player1Score = 0;
