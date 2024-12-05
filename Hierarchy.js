@@ -1,14 +1,6 @@
-// CPSC 1405 | Shehzad | Project | hand hierarchy
+/** HIERARCHY CODE (Brian's work)
 
-// hand strength hierarchy
-// Straight Flush = 0
-// Full House = 1
-// Flush = 2
-// Straight = 3
-// Three of a kind = 4
-// Two Pair = 5
-// Pair = 6
-// High card = 7
+// hand strength hierarchy: strongest to weakest, left to right
 let hierarchy = ["Straight Flush", "Full House", "Flush", "Straight", "Three of a Kind", "Two Pair", "Pair", "High Card"];
 
 // If hand strengths are tied, compare values of the cards
@@ -28,7 +20,7 @@ function countRepeats(playerHand, startIndex) {
     // counts number of times the given card value appears in the hand
     let count = 0;
 
-    for (j = startIndex; j < playerHand.length; j++) { 
+    for (j = startIndex; j < playerHand.length; j++) {
 
         if (playerHand[startIndex].getNum() == playerHand[j].getNum()) {
             count++;
@@ -68,7 +60,6 @@ function OfAKind(playerHand) {
                 onePair = true;
             }
         }
-
     }
     if (threeOfAKind && onePair) { // this is a Full House type of hand
         handType = hierarchy[1];
@@ -90,7 +81,7 @@ function OfAKind(playerHand) {
 
 function straightCheck(playerHand) {
     // checks if hand contains a straight and returns boolean
-    let sorted = playerHand.sort() 
+    let sorted = playerHand.sort()
     let isStraight = true;
     for (i = 0; i < sorted.length - 1; i++) {
         if ((sorted[i].getNum() + 1) != sorted[i + 1].getNum()) {
@@ -127,3 +118,4 @@ function bestHand(playerHand) {
     }
     return handType;
 }
+*/
