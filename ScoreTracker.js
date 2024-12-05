@@ -3,10 +3,10 @@ function scoreTracker(player, score) {
     // note: no change to score if player folded
     let points = player.getScore();
     let lastPoint = false;
-    
+
     switch (score) {
         case 1:
-        // player won the round
+            // player won the round
             drawScore(player, 1);
             player.addPoint();
             switch (player.playertype) {
@@ -29,23 +29,23 @@ function scoreTracker(player, score) {
                     }
                     break;
                 default:
-                    console.log("Error: scoreTracker switch case 'playerType'");
+                    console.log("Error: scoreTracker switch case 'playertype'");
                     break;
             }
             break;
         case -1:
-        // player lost the round without folding
+            // player lost the round without folding
             if (points > 0) { // score cannot become negative
                 drawScore(player, -1);
                 player.removePoint();
             }
-            if (player.playerType == "human") {
+            if (player.playertype == "human") {
                 alert("You lost the hand.");
                 newRound();
             }
             break;
         case 0:
-        // human and computer hands strengths are equal
+            // human and computer hands strengths are equal
             alert("Tie round!");
             newRound();
             break;
@@ -61,7 +61,7 @@ function scoreTracker(player, score) {
 
 // Player is the player whose tracker is being changed; Score is the value representing win or loss
 function drawScore(player, score) {
-    let score = player.getScore();
+    let playerScore = player.getScore();
 
     // change the score dots gray by default
     for (i = 0; i < 3; i++) {
@@ -70,7 +70,7 @@ function drawScore(player, score) {
     }
 
     // for each point the player has, turn a score dot green
-    for (i = 0; i < score; i++) {
+    for (i = 0; i < playerScore; i++) {
         let dot = document.getElementById(player + "-point" + i);
         dot.style.backgroundColor = "green";
     }
