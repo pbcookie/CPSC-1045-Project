@@ -21,27 +21,39 @@ guideButton.addEventListener('click', function() {
     );
 });
 
-class Player {
+class Player{
     //name is the player's name
-    constructor(name) {
+    constructor(name, playertype){
         this.name = name;
-        this.handCards = [];
+        this.cardArr = [];
         this.point = 0;
+        this.playertype = playertype;
+        this.handcardLocation = [];
+        if(playertype == "player"){
+            this.handcardLocation.push(cardLocation[1]);//firstPlayerCardLocation
+            this.handcardLocation.push(cardLocation[2]);//secondPlayerCardLocation
+        }
+        if(playertype == "computer"){
+            this.handcardLocation.push(cardLocation[3]);//firstComputerCardLocation
+            this.handcardLocation.push(cardLocation[4]);//secondComputerCardLocation
+        }
     }
-    addCard(newCard) {
-        this.handCards.push(newCard);
+    addCard( newCard ){
+        newCard.setLocation(this.handcardLocation[this.cardArr.length]);//change card loction
+        this.cardArr.push(newCard);
+        newCard.setFace(true);
     }
-    clearHandCard() {
-        this.handCards = [];
+    clearHandCard(){
+        this.cardArr = [];
     }
-    getHandCards() { return this.handCards; }  //return a reference of the handcard
-    showHandCards() {
+    getHandCards(){return this.cardArr;}  //return a reference of the handcard
+    showHandCards(){
         let arr = this.getHandCards();
         console.log(
             (
-                function () {
+                function(){
                     let result = [];
-                    for (let i = 0; i < arr.length; i++) {
+                    for(let i=0;i<arr.length;i++){
                         result.push(arr[i].number + arr[i].type);
                     }
                     return result;
@@ -49,9 +61,23 @@ class Player {
             )()
         )
     }
-    getName() { return this.name; }
-    getPoint() { return this.point; }
-    addPoint() { this.point += 1; }
+    getName(){return this.name;} 
+    getScore(){return this.point;}
+    addPoint(){this.point += 1;}
+    removePoint(){this.point -= 1;}
+    displayHandCard(){
+        let arr=[]
+        for(let i=0;i<this.cardArr.length;i++){
+            arr.push(this.cardArr[i].display());
+        }
+        console.log(arr);
+    }
+    /*draw player's handcards*/
+    draw(){
+        for(let i=0;i<this.cardArr.length;i++){
+            this.cardArr[i].draw();
+        }
+    }
 }
 
 /*************deck class******************** */
@@ -110,50 +136,52 @@ class Deck{
 //coodinator of location of card 
 let coodinator_x, coodinator_y;
 
-const deck = [coodinator_x, coodinator_y];
-const firstPlayerCard = [coodinator_x, coodinator_y];
-const secondPlayerCard = [coodinator_x, coodinator_y];
-const firstComputerCard = [coodinator_x, coodinator_y];
-const secondComputerCard = [coodinator_x, coodinator_y];
-const firstCommunityCards = [coodinator_x, coodinator_y];
-const secondCommunityCards = [coodinator_x, coodinator_y];
-const thirdCommunityCards = [coodinator_x, coodinator_y];
-const cardLocation = [deck, firstPlayerCard, secondPlayerCard, firstComputerCard, secondComputerCard, firstCommunityCards, secondCommunityCards, thirdCommunityCards];
-
-class Card {
+const deckLocation = [coodinator_x, coodinator_y];
+const firstPlayerCarLocationd = [coodinator_x, coodinator_y];
+const secondPlayerCardLocation = [coodinator_x, coodinator_y];
+const firstComputerCardLocation = [coodinator_x, coodinator_y];
+const secondComputerCardLocation = [coodinator_x, coodinator_y];
+const firstCommunityCardLocation = [coodinator_x, coodinator_y];
+const secondCommunityCardLocation = [coodinator_x, coodinator_y];
+const thirdCommunityCardLocation = [coodinator_x, coodinator_y];
+const cardLocation = [deck, firstPlayerCardLocation, secondPlayerCardLocation, firstComputerCardLocation, secondComputerCardLocation, firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation];
+const tableLocation = cardLocation.slice(6);// including [firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation]
+class Card{
     //number is Int  from 1 to 8
     //type is string, eg:circle
     //ch is the height of card
     //cw is the width of card
-    constructor(number, type, ch = 120, cw = 80) {
-        this.number = number;
-        this.type = type;
-        this.location = cardLocation[0]; //this card is initial in the deck
-        this.faceUp = false;// this card is face down
-        this.ch = ch;
-        this.cw = cw;
+    constructor(number, type, ch = 120, cw = 80){
+      this.number = number;
+      this.type = type;
+      this.location = cardLocation[0]; //this card is initial in the deck
+      this.faceUp = false;// this card is face down
+      this.ch = ch;
+      this.cw = cw;
     }
-
-    getType() { return this.type; }
-    getNum() { return this.number; }
-    getLocation() { return this.location; }
-    setLocation(newLocation) { this.location = newLocation; }
-    isFace() { return this.faccUp; }
-    setFace(cover) { this.faceUp = cover; }//If you want to reveal this card. use this method to set faceUp to true
-    draw(ctx) {
-        if (this.location != cardLocation[0]) {//this card is  in deck, no need to be drawed
-            if (this.faceUp) {//this card is face up
-                drawface(ctx, this, this.location[0], this.location[1], this.ch, this.cw);
-                // this.location[0] is the coodination-x
-                // this.location[1] is the coodination-y
-            } else {
-                //this card is face down
-                drawback(ctx, this.location[0], this.location[1], this.ch, this.cw);
-            }
+   
+    getType(){return this.type;}
+    getNum(){return this.number;}
+    getLocation(){return this.location;}
+    setLocation( newLocation ){this.location = newLocation;}
+    isFace(){return this.faceUp;}  
+    setFace(cover){this.faceUp = cover;}//If you want to reveal this card. use this method to set faceUp to true
+    draw(){
+      if(this.location != cardLocation[0]){//this card is  in deck, no need to be drawed
+        if(this.faceUp){//this card is face up
+          drawCard(this.location[0], this.location[1], this.cw, this.ch, this.number, this.type);
+          // this.location[0] is the coodination-x
+          // this.location[1] is the coodination-y
+        }else{
+          //this card is face down
+          drawback(ctx, this.location[0], this.location[1], this.ch, this.cw);
         }
+      }
     }
-}
-
+    display(){
+      return this.number + " " + this.type;
+    }
+  }
 class comCard{
     constructor(){
         this.cardArr =[];
@@ -162,6 +190,7 @@ class comCard{
     addCard(newCard){  
         newCard.setLocation(this.cardLocation[this.cardArr.length]);//change the card's location
         this.cardArr.push(newCard);
+        newCard.setFace(true);
     }
     display(){
         let arr = []
@@ -173,7 +202,11 @@ class comCard{
     clear(){
         this.cardArr = [];
     }
-    draw(){}
+    draw(){
+        for(let i=0;i<this.cardArr.length;i++){
+            this.cardArr[i].draw();
+        }
+    }
 }
 
 //Convert the combination of the players' handcard and the commnunication card into a string of numbers and then compare. 
@@ -430,6 +463,14 @@ let player2Score = 0;
 
 let player1Rounds = 0;
 let player2Rounds = 0;
+/**************************draw testing***************/
+ firstPlayerCardLocation = [900, 780];
+ secondPlayerCardLocation = [1000, 780];
+ firstComputerCardLocation = [900, 580];
+ secondComputerCardLocation = [1000, 580];
+ firstCommunityCardLocation = [850, 680];
+secondCommunityCardLocation = [950, 680];
+ thirdCommunityCardLocation = [1050, 680];
 
 function updateScore(player, round) {
     const scoreCircle = document.getElementById(`${player}-round${round}`);
