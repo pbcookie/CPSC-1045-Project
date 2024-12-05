@@ -1,60 +1,89 @@
+// Player is the player whose tracker is being changed; Score is the value passed from the round result
 function scoreTracker(player, score) {
     // note: no change to score if player folded
+    let points = player.getScore();
+    let lastPoint = false;
     
-    if (score == 1) { // player won the round
-        drawScore(player, 1);
-        player.addPoint();
+    switch (score) {
+        case 1:
+        // player won the round
+            drawScore(player, 1);
+            player.addPoint();
+            switch (player.playerType) {
+                case "human":
+                    // human player won their 3rd point
+                    if (points >= 3) {
+                        alert("You won the match! Great game!");
+                        lastPoint = true;
+                    }
+                    else {
+                        alert("You won the hand!");
+                        newRound();
+                    }
+                    break
+                case "computer":
+                    // computer player won their 3rd point
+                    if (points >= 3) {
+                        alert("You lost the match. Try a new game!")
+                        lastPoint = true;
+                    }
+                    break;
+                default:
+                    console.log("Error: scoreTracker switch case 'playerType'");
+                    break;
+            }
+            break;
+        case -1:
+        // player lost the round without folding
+            if (points > 0) { // score cannot become negative
+                drawScore(player, -1);
+                player.removePoint();
+            }
+            if (player.playerType == "human") {
+                alert("You lost the hand.");
+                newRound();
+            }
+            break;
+        case 0:
+        // human and computer hands strengths are equal
+            alert("Tie round!");
+            newRound();
+            break;
+        default:
+            console.log("Error: scoreTracker switch case 'score'");
+            break;
     }
-    else if (score == -1) { // player lost the round without folding
-        if (player.getScore > 0) { // score cannot become negative
-            drawScore(player, -1);
-            player.removePoint();
-        }
-    }
-    else if (score == 0) {
-        alert("Tie round!"); // human and computer hands strengths are equal
+
+    if (lastPoint) {
+        endMatch();
     }
 }
 
+// Player is the player whose tracker is being changed; Score is the value representing win or loss
 function drawScore(player, score) {
     // draws the dots on the score tracker
     let tracker = document.getElementById(player + "tracker");
-    let canvas = document.getElementById(""); // TODO: replace with the proper canvas element id 
+    // TODO: make sure the score tracker is named appropriately to work with the other functions being fed parameter "player"
+    let canvas = document.getElementById(player);
     let ctx = canvas.getContext("2d");
     let score = player.getScore();
-    ctx.beginPath;
-    ctx.translate(x + score * 100, y); // TODO: replace x and y with proper coordinates
-    ctx.arc(); // TODO: draw a small circle in score tracker to represent point change
-}
 
-function win() {
-    // called when round ends and the human player wins
-    scoreTracker(player, 1);
-    alert("You won the hand!");
-    endRound()
-}
-
-function lose() {
-    // called when round ends and human player loses
-    scoreTracker(player, -1);
-    alert("You lost the hand.");
-    endRound();
-}
-
-function endRound() {
-    // called after winner/loser/tie is declared in a round or if the player folds
-    if (Player[human].getScore >= 3) {
-        endMatch(); 
+    // Draw gray circles representing empty score
+    for (i = 0; i < 3; i++) {
+        ctx.beginPath;
+        ctx.translate(x + score * 100, y); // TODO: replace x and y with proper coordinates
+        ctx.arc(); // TODO: draw a small gray circle representing an empty score
     }
-    else if (Player[computer].getScore >= 3) {
-        endMatch();
-    }
-    else {
-        // clean up table and set up next round
-        newRound();
+
+    // for each point the player has, draw an according dot on the score tracker
+    for (i = 0; i < score; i++) {
+        ctx.beginPath;
+        ctx.translate(x + score * 100, y); // TODO: replace x and y with proper coordinates
+        ctx.arc(); // TODO: draw a small green circle in score tracker to represent point change   
     }
 }
 
+// call canvas clear function(s), call new game function
 function endMatch() {
     // TODO: cleanup and prepare for next game
 }

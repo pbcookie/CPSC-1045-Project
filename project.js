@@ -441,7 +441,7 @@ for (let k = 0; k < 3; k++) {
     newCard = new Card(Math.floor(Math.random() * (8 - 1 + 1)) + 1, typecolor);
     commnunicationCard.push(newCard);
 }
-console.log("commnunication card is :");
+console.log("community card is :");
 console.log(
     (
         function () {
