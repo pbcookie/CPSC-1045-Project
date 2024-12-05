@@ -36,17 +36,17 @@ if (confirm(guideText) == true) {
 }
 
 // 2d array 
-//coodinator of location of card 
-let coodinator_x, coodinator_y;
+//coordinate of location of card 
+let coordinate_x, coordinate_y;
 
-const deckLocation = [coodinator_x, coodinator_y];
-const firstPlayerCardLocation = [coodinator_x, coodinator_y];
-const secondPlayerCardLocation = [coodinator_x, coodinator_y];
-const firstComputerCardLocation = [coodinator_x, coodinator_y];
-const secondComputerCardLocation = [coodinator_x, coodinator_y];
-const firstCommunityCardLocation = [coodinator_x, coodinator_y];
-const secondCommunityCardLocation = [coodinator_x, coodinator_y];
-const thirdCommunityCardLocation = [coodinator_x, coodinator_y];
+const deckLocation = [coordinate_x, coordinate_y];
+const firstPlayerCardLocation = [coordinate_x, coordinate_y];
+const secondPlayerCardLocation = [coordinate_x, coordinate_y];
+const firstComputerCardLocation = [coordinate_x, coordinate_y];
+const secondComputerCardLocation = [coordinate_x, coordinate_y];
+const firstCommunityCardLocation = [coordinate_x, coordinate_y];
+const secondCommunityCardLocation = [coordinate_x, coordinate_y];
+const thirdCommunityCardLocation = [coordinate_x, coordinate_y];
 const cardLocation = [deck, firstPlayerCardLocation, secondPlayerCardLocation, firstComputerCardLocation, secondComputerCardLocation, firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation];
 const tableLocation = cardLocation.slice(6);// including [firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation]
 
@@ -188,8 +188,8 @@ class Card {
         if (this.location != cardLocation[0]) {//this card is  in deck, no need to be drawed
             if (this.faceUp) {//this card is face up
                 drawCard(this.location[0], this.location[1], this.cw, this.ch, this.number, this.type);
-                // this.location[0] is the coodination-x
-                // this.location[1] is the coodination-y
+                // this.location[0] is the coordinate-x
+                // this.location[1] is the coordinate-y
             } else {
                 //this card is face down
                 drawback(ctx, this.location[0], this.location[1], this.ch, this.cw);
