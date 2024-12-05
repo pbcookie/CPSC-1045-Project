@@ -1,5 +1,5 @@
 // Set the player names
-let playerName = prompt("Greetings, player! Enter your name:")
+let playerName = prompt("Greetings, player! Enter your name:");
 document.getElementById("human-name").innerHTML = playerName;
 
 let computerNameArr = ["Queen", "Jack", "King", "Ace", "Shark", "Negreanu"]
