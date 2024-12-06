@@ -32,9 +32,13 @@ function drawDeck() {
 }
 /********************************************* */
 ///draw back 
-function drawBack(x,y,width,height){
-    ctx.fillStyle = 'orange';
+function drawBack(x, y, width, height) {
+    const gradient = ctx.createLinearGradient(x, y, x + width, y + height);
+    gradient.addColorStop(0, 'orange');
+    gradient.addColorStop(1, 'darkred');
+    ctx.fillStyle = gradient;
     ctx.fillRect(x, y, width, height);
+
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 2;
     ctx.strokeRect(x, y, width, height);
