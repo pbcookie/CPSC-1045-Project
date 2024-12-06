@@ -13,7 +13,12 @@ let firstCommunityCardLocation = [coodinator_x, coodinator_y];
 let secondCommunityCardLocation = [coodinator_x, coodinator_y];
 let thirdCommunityCardLocation = [coodinator_x, coodinator_y];
 let cardLocation = [deckLocation, firstPlayerCardLocation, secondPlayerCardLocation, firstComputerCardLocation, secondComputerCardLocation, firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation];
-let tableLocation = cardLocation.slice(6);// including [firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation]
+let tableLocation = cardLocation.slice(5);// including [firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation]
+
+//loction for display result
+
+let displayA=[350,670];
+let displayB=[350,20];
 
 
 
@@ -62,6 +67,8 @@ if (confirm(guideText) == true) {
 
 let humanPlayer = new Player(playerName, "human");
 let ComputerPlayer = new Player(computerName, "computer");
+let playbutton = document.getElementById("play");
+playbutton.addEventListener('click',playNewGame(humanPlayer,ComputerPlayer));
 
 let player1Score = 0;
 let player2Score = 0;

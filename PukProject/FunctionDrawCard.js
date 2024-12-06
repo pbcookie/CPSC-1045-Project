@@ -30,7 +30,22 @@ function drawDeck() {
         }
     }
 }
+/********************************************* */
+///draw back 
+function drawBack(x,y,width,height){
+    ctx.fillStyle = 'orange';
+    ctx.fillRect(x, y, width, height);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(x, y, width, height);
+}
 
+function drawDeck(x,y,width,height){
+    for(let i=2;i>-1;i--){
+        drawBack(x+5*i,y,width,height);
+    }
+}
+/*********************************************** */
 // Draw a card
 function drawCard(x, y, width, height, number, shapeName) {
     // Background

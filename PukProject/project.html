@@ -12,15 +12,16 @@
     <script defer src="ClassCommunityCard.js"></script>
     <script defer src="ClassDeck.js"></script>
     <script defer src="FunctionCompare.js"></script>
-    <script defer src="FunctionGame.js"></script>
+    <script defer src="ClassGame.js"></script>
     <script defer src="FunctionScore.js"></script>
     <script defer src="project.js"></script>
     <script defer src="test.js"></script>
 </head>
 
 <body>
+    <div class="guide-button" id="guide-button">Guide</div>
     <div class="poker-table">
-        <div class="guide-button" id="guide-button">Guide</div> 
+        
 
         <div class="deck" id="deck">Deck</div>
 
@@ -40,10 +41,7 @@
             <div class="card">P1</div>
         </div>
 
-        <div class="actions">
-            <button>Fold</button>
-            <button>Bet</button>
-        </div>
+
     </div>
     <div class="score-tracker">
         <div class="player" id="player1">
@@ -64,9 +62,25 @@
             </div>
         </div>
     </div>
-</div>
-    <canvas id="pokerCard" width="300" height="400"></canvas>
 
+    <canvas id="pokerCanvas" width="1200" height="800" onmousemove="coodinate(event)" ></canvas>
+    <div class="actions">
+        <button id="play">NewGame</button>
+        <button id="fold">Fold</button>
+        <button id="bet">Bet</button>
+        <button id="nextround">NextRound</button>
+        <div id="coodinate"> </div>
+    </div>
+    <div id="output"></div>
+   
+    <script defer >
+        function coodinate(event){
+            let x = event.offsetX;
+            let y = event.offsetY;
+            let output = document.getElementById("coodinate");
+            output.innerHTML = `X: ${x} , Y: ${y}`;
+        }
+    </script>
     
 </body>
 

@@ -18,9 +18,11 @@ class Player {
     addCard(newCard) {
         newCard.setLocation(this.handcardLocation[this.cardArr.length]);//change card loction
         this.cardArr.push(newCard);
-        newCard.setFace(true);
+        if(this.playertype == "human"){
+            newCard.reveal();
+        }
     }
-    clearHandCard() {
+    clearCard() {
         this.cardArr = [];
     }
     getHandCards() { return this.cardArr; }  //return a reference of the handcard
@@ -54,5 +56,11 @@ class Player {
         for (let i = 0; i < this.cardArr.length; i++) {
             this.cardArr[i].draw();
         }
+    }
+    clearUp(){
+        for (let i = 0; i < this.cardArr.length; i++) {
+            this.cardArr[i].clearUp();
+        }
+        this.clearCard();
     }
 }

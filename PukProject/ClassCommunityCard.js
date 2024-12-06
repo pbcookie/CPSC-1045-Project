@@ -6,7 +6,7 @@ class comCard {
     addCard(newCard) {
         newCard.setLocation(this.cardLocation[this.cardArr.length]);//change the card's location
         this.cardArr.push(newCard);
-        newCard.setFace(true);
+        
     }
     display() {
         let arr = []
@@ -15,12 +15,18 @@ class comCard {
         }
         console.log(arr);
     }
-    clear() {
+    clearCard() {
         this.cardArr = [];
     }
     draw() {
         for (let i = 0; i < this.cardArr.length; i++) {
             this.cardArr[i].draw();
         }
+    }
+    clearUp(){
+        for (let i = 0; i < this.cardArr.length; i++) {
+            this.cardArr[i].clearUp();
+        }
+        this.clearCard();
     }
 }

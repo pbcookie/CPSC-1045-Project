@@ -4,17 +4,94 @@
 
 //playerA and playerB are the instances of class Player
 //cCardArr is the array of Community cards
-function CompareCard(playerA, playerB, cCardArr) {
-    let fivecardA = ArrToStr(playerA.getHandCards().concat(cCardArr));
-    let fivecardB = ArrToStr(playerB.getHandCards().concat(cCardArr));
+
+function CompareCard(playerA, playerB, comcards) {
+    let fiveArrA = playerA.getHandCards().concat(comcards.cardArr);
+    let fiveArrB = playerB.getHandCards().concat(comcards.cardArr);
+    let fivecardA = ArrToStr(fiveArrA);
+    let fivecardB = ArrToStr(fiveArrB);
+    //display the result of the cardarray
+    for(let i=0;i<5;i++){
+        let cardA = fiveArrA[i];
+        drawCard(displayA[0]+i*(cardA.cw + 10)   ,displayA[1],cardA.cw,cardA.ch,cardA.number,cardA.type);
+    }
+    for(let i=0;i<5;i++){
+        let cardB = fiveArrB[i];
+        drawCard(displayB[0]+i*(cardB.cw + 10)   ,displayB[1],cardB.cw,cardB.ch,cardB.number,cardB.type);
+    }
+    ctx.font = 'bold 20px Arial';
+    ctx.fillStyle = 'black';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    let textA;
+    switch(Number(fivecardA[0])){
+        case 7:
+            textA = "StraightFlush";
+            break;
+        case 6:
+            textA = "FullHouse";
+            break;
+        case 5:
+            textA = "Flush";
+            break;
+        case 4:
+            textA = "Straight";
+            break;
+        case 3:
+            textA = "ThreeofKind";
+            break;
+        case 2:
+            textA = "TwoPair";
+            break;
+        case 1:
+            textA = "OnePair";
+            break;
+        case 0:
+            textA = "HighCard";
+            break;
+    }
+    ctx.fillText(textA, 830, 730);
+    let textB;
+    switch(Number(fivecardB[0])){
+        case 7:
+            textB = "StraightFlush";
+            break;
+        case 6:
+            textB = "FullHouse";
+            break;
+        case 5:
+            textB = "Flush";
+            break;
+        case 4:
+            textB = "Straight";
+            break;
+        case 3:
+            textB = "ThreeofKind";
+            break;
+        case 2:
+            textB = "TwoPair";
+            break;
+        case 1:
+            textB = "OnePair";
+            break;
+        case 0:
+            textB = "HighCard";
+            break;
+    }
+    ctx.fillText(textB,830,75);
+
+
+
+    //comparing the str
     if (Number(fivecardA) > Number(fivecardB)) {
-        return playerA.getName();
+        return playerA;
     } else if (Number(fivecardA) < Number(fivecardB)) {
-        return playerB.getName();
+        return playerB;
     } else {
         return "draw";
     }
 }
+ 
 
 //translate array of card into a string of number
 
@@ -31,8 +108,10 @@ function ArrToStr(arr) {
     //first, sort the array of cards
     //because the card is not string,but object, we need function in sort method
     arr.sort(function (a, b) { return b.number - a.number });
+    console.log("The five number arr is " + arr);
     let str;
     //identify which type the cards are
+
     if (IsStraightFlush(arr)) {
         console.log("StraightFlush");
         str = "7";
@@ -70,6 +149,7 @@ function ArrToStr(arr) {
             }
         }
     }
+
     //add rest number to the str
     for (i = 0; i < arr.length; i++) {
         str += arr[i].number;
@@ -158,9 +238,23 @@ function IsOnePair(arr) {
     //qweXX
     for (let i = 0; i < arr.length - 1; i++) {
         if (arr[i].number === arr[i + 1].number) {
-            if (i !== 0) {
-                [arr[0], arr[i]] = [arr[i], arr[0]];
-                [arr[1], arr[i + 1]] = [arr[i + 1], arr[1]];
+            switch(i){
+                case 3:
+                    [arr[2],arr[4]]=[arr[4],arr[2]];
+                    [arr[1],arr[3]]=[arr[3],arr[1]];
+                    [arr[0],arr[2]]=[arr[2],arr[0]];
+                    break;
+                case 2:
+                    [arr[0],arr[2]]=[arr[2],arr[0]];
+                    [arr[1],arr[3]]=[arr[3],arr[1]];
+                    break;
+                case 1:
+                    [arr[0],arr[2]]=[arr[2],arr[0]];
+                    break;
+                case 0:
+                    break;
+                default:
+                    console.log("No case matched");
             }
             return true;
         }

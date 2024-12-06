@@ -46,5 +46,14 @@ class Deck {
         }
         this.cardArr.reverse();
     }
-    draw() { };
+    draw() { 
+        let width = this.cardArr[0].cw;
+        let height = this.cardArr[0].ch;
+        drawDeck(this.location[0],this.location[1],width, height);
+    };
+    clearUp(){
+        let width = this.cardArr[0].cw;
+        let height = this.cardArr[0].ch;
+        ctx.clearRect(this.location[0], this.location[1], width+10, height);
+    }
 }

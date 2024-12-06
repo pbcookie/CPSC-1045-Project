@@ -1,10 +1,15 @@
+
+
+
+
 function updateScore(player, round) {
     const scoreCircle = document.getElementById(`${player}-round${round}`);
     if (scoreCircle) {
         scoreCircle.classList.add('won');
     }
 }
-
+/*
+//this function have been combined into game class
 function roundWin(winner) {
     if (winner === 'player1') {
         player1Rounds++;
@@ -22,19 +27,22 @@ function roundWin(winner) {
         resetScores();
     }
 }
-
+*/
 function resetScores() {
+    /*
     player1Rounds = 0;
     player2Rounds = 0;
-
+    */
     document.querySelectorAll('.score-circle').forEach(circle => {
         circle.classList.remove('won');
         circle.classList.remove('lost');
     });
 }
 
-/************************************************************Score tracker******************************************************************/
 
+
+/************************************************************Score tracker******************************************************************/
+/*
 // Player is the player whose tracker is being changed; Score is the value passed from the round result
 function scoreTracker(player, score) {
     // note: no change to score if player folded
@@ -119,3 +127,4 @@ function drawScore(player, score) {
 function endMatch() {
     // TODO: cleanup and prepare for next game
 }
+*/
