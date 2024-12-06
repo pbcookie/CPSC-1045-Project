@@ -39,6 +39,7 @@ body {
     cursor: pointer;
     text-align: center;
     font-weight: bold;
+    z-index: 2;
 }
 
 .guide-button:hover {
@@ -79,7 +80,7 @@ body {
 }
 
 .score-circle.won {
-    background-color: green;
+    background-color: rgb(167, 223, 39);
 }
 
 .score-circle.lost {
@@ -175,6 +176,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    z-index: 2;
 }
 
 .actions button {
@@ -186,6 +188,7 @@ body {
     font-size: 16px;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    
 }
 
 .actions button:hover {
@@ -196,4 +199,21 @@ body {
 .card:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+#pokerCanvas{
+    
+    /*background-color: rgba(118, 207, 207,0.2);*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#output{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em;
+    background-color: rgba(0, 0, 0, 0.5);
 }
