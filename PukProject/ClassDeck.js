@@ -17,7 +17,7 @@ class Deck {
     display() {
         let arr = [];
         for (let i = 0; i < this.cardArr.length; i++) {
-            arr.push(this.cardArr[i].getNum() + " " + this.cardArr[i].getType());
+            arr += this.cardArr[i].display() + "//"; 
         }
         console.log(arr);
     }
@@ -35,7 +35,6 @@ class Deck {
         for (let i = 0; i < num; i++) {
             let newCard = this.cardArr.pop();
             player.addCard(newCard);
-            newCard.setLocation(player.handcardLocation[i]); //change the card's location into player's handcard loction
         }
         this.cardArr.reverse();
     }

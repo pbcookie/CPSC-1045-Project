@@ -31,6 +31,6 @@ class Card{
       }
     }
     display(){
-      return this.number + " " + this.type;
+      return this.number + " " + this.type + " Location:" + this.getLocation();
     }
   }

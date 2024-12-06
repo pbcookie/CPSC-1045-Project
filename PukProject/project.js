@@ -1,6 +1,8 @@
 // 2d array 
 //coodinator of location of card 
-let coodinator_x,coodinator_y;
+let coodinator_x = 0;
+let coodinator_y = 0;
+
 
 let deckLocation = [coodinator_x, coodinator_y];
 let firstPlayerCardLocation = [coodinator_x, coodinator_y];
@@ -16,15 +18,17 @@ let tableLocation = cardLocation.slice(6);// including [firstCommunityCardLocati
 
 
 /************************************************************************************ */
-
+/*
 // Set the player names
 let playerName = prompt("Greetings, player! Enter your name:");
-document.getElementById("human-name").innerHTML = playerName;
+//ClassName("player-name")[0] is the player1
+document.getElementsByClassName("player-name")[0].innerHTML = playerName;
 
 let computerNameArr = ["Queen", "Jack", "King", "Ace", "Shark", "Negreanu"]
 let computerName = computerNameArr[parseInt(Math.random() * 6)];
-
-document.getElementById("computer-name").innerHTML = computerName;
+//ClassName("player-name")[1] is the player2
+document.getElementsByClassName("player-name")[1].innerHTML = computerName;
+document.getElementsByClassName
 
 // 'how to play' text
 let guideText = "How to play the game:\n" +
@@ -53,7 +57,8 @@ guideButton.addEventListener('click', function () {
 if (confirm(guideText) == true) {
     alert(handStrengthText);
 }
-//////////////********************************* */
+
+
 
 let humanPlayer = new Player(playerName, "human");
 let ComputerPlayer = new Player(computerName, "computer");
@@ -69,3 +74,4 @@ let currentDeck;
 // Start the game
 newGame();
 
+*/

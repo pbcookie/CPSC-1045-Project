@@ -74,6 +74,7 @@ let result = CompareCard(playerA, playerB, communityCard);
 console.log("winner is " + result);
 
 /**************************draw testing***************/
+deckLocation = [2,2];
 firstPlayerCardLocation = [900, 780];
 secondPlayerCardLocation = [1000, 780];
 firstComputerCardLocation = [900, 580];
@@ -81,11 +82,21 @@ secondComputerCardLocation = [1000, 580];
 firstCommunityCardLocation = [850, 680];
 secondCommunityCardLocation = [950, 680];
 thirdCommunityCardLocation = [1050, 680];
+cardLocation = [deckLocation, firstPlayerCardLocation, secondPlayerCardLocation, firstComputerCardLocation, secondComputerCardLocation, firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation];
+tableLocation = cardLocation.slice(6);// including [firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation]
+
+testCard = new Card(8,"Circle");
+console.log("testcard's loction is "+testCard.getLocation());
+console.log(testCard.display());
+
 
 const canvas = document.getElementById('pokerCard');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
+drawCard(500, 500, 80, 120, 8, "Circle");
+
 
 let newdeck = new Deck("Circle", "Diamond", "Triangle", 8);
 for (let i = 0; i < 5; i++) {
@@ -93,7 +104,7 @@ for (let i = 0; i < 5; i++) {
     newdeck.shuffle();
 }
 newdeck.display();
-let newguy = new Player("Ben", "player");
+let newguy = new Player("Ben", "human");
 let tableCards = new comCard();
 
 newdeck.dealPlayer(newguy, 2);
@@ -107,5 +118,8 @@ tableCards.display();
 newdeck.display();
 
 /****************************************************/
+
 //test
+/*
 drawScore(playerName, 1);
+*/
