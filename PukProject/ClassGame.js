@@ -1,26 +1,12 @@
-// Call any functions related to the beginning of the game (only keeping Players)
-/*
-function newGame() {
-    resetScores();
-    currentDeck = new Deck("circle", "triangle", "diamond", 8);
-    newRound();
-}
-
-
-// Calls all of the necessary functions to start a new round
-function newRound(currentDeck,humanPlayer,ComputerPlayer) {
-    for(let i=0;i<randomNum(1,10);i++){
-        currentDeck.shuffle();
-    }
-    currentDeck.dealPlayer(humanPlayer, 2);
-    currentDeck.dealPlayer(ComputerPlayer, 2);
-    currentDeck.dealTable(3);
-}
-*/
-
 function randomNum(min,max){
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+const audioShuffle = document.getElementById("audio-shuffle");
+const audioFlip = document.getElementById("audio-flip");
+const audioChips = document.getElementById("audio-chips");
+const audioWin = document.getElementById("audio-win");
+const audioLose = document.getElementById("audio-lose");
 
 class Game{
     constructor(player1,player2){
@@ -34,7 +20,7 @@ class Game{
     newRound(){
         
         this.clearUp();
-        
+        audioShuffle.play();
         this.comcard = new comCard();
         this.deck = new Deck("Circle", "Diamond", "Triangle", 8);
         this.deck.draw();
@@ -60,7 +46,7 @@ class Game{
         if(winner == "draw"){
             console.log("this round is draw");
             output.style.color = 'lightgreen';
-            output.innerHTML = "this round is draw";
+            output.innerHTML = "This round is draw";
             NextRoundbutton.style.display ="block";
         }
         else{
@@ -68,20 +54,26 @@ class Game{
             if(winner == this.player1){
                 updateScore('player1', this.player1.getScore());
                 output.style.color = 'lightblue';
-                output.innerHTML = "You Win Round";
-                
+                output.innerHTML = "You won the hand!";
             }
             else if(winner == this.player2){
                 updateScore('player2', this.player2.getScore());
                 output.style.color = 'pink';
-                output.innerHTML = "You Lose Round"
+                output.innerHTML = "You lost the hand!"
             }
             ///check who get 3 points
             if(winner.getScore() === 3){
-                console.log(winner.name + " is winner!");
+                if(winner == this.player1){
+                    audioWin.play();
+                }
+                else {
+                    audioLose.play();
+                }
+                console.log(winner.name + " wins!");
                 output.style.color = 'lightyellow';
-                output.innerHTML = winner.name + " is winner!";
+                output.innerHTML = winner.name + " wins!";
                 NextRoundbutton.style.display ="none";
+                showHidePlayButton();
             }else{
                 NextRoundbutton.style.display ="block";
             }
@@ -94,6 +86,7 @@ function bet(game){
     output.innerHTML = "";
     let comcard = game.comcard;
     let cpt = game.player2;
+    audioChips.play();
     if( comcard.cardArr[2].isFace()  ){
         for(let i=0;i<2;i++){
             cpt.cardArr[i].reveal();
@@ -124,16 +117,15 @@ function bet(game){
 
 
 function fold( game ){
+    audioFlip.play();
     output.innerHTML = "";
     ctx.clearRect(displayA[0]-5,displayA[1]-5,610,130);
     ctx.clearRect(displayB[0]-5,displayB[1]-5,610,130);
-    game.newRound();
     betbutton.style.display = "block";
     foldbutton.style.display ="block";
     NextRoundbutton.style.display ="none";
+    setTimeout(game.newRound(), 1000);
 }
-
-
 
 
 function playNewGame(player1,player2){
@@ -144,4 +136,17 @@ function playNewGame(player1,player2){
     player1.point = 0;
     player2.point = 0;
     resetScores()
+    showHidePlayButton();
+}
+
+let playButton = document.getElementById("play");
+
+// don't display the Play button during a live round. This function hides the button if currently shown, and shows if hidden.
+function showHidePlayButton() {
+    if (playButton.style.display == "none") {
+        playButton.style.display = "block";
+    }
+    else {
+        playButton.style.display = "none";
+    }
 }

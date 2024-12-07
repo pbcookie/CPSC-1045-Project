@@ -71,33 +71,11 @@ let handStrengthText = "Hand strength:\n" +
 // guide button opens the how to play text
 const guideButton = document.getElementById('guide-button');
 guideButton.addEventListener('click', function () {
-    confirm(guideText);
+    if (confirm(guideText)) {
+        alert(handStrengthText);
+    }
 });
 
-if (confirm(guideText) == true) {
-    alert(handStrengthText);
-}
-
-
-
-
-
-/*
-let playbutton = document.getElementById("play");
-playbutton.addEventListener('click',playNewGame(humanPlayer,ComputerPlayer));
-
-let player1Score = 0;
-let player2Score = 0;
-
-let player1Rounds = 0;
-let player2Rounds = 0;
-
-let currentDeck;
-
-// Start the game
-newGame();
-
-*/
 const canvas = document.getElementById('pokerCanvas');
 const ctx = canvas.getContext('2d');
 

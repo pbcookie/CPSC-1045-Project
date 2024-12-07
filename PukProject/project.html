@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="project.css">
-    <title>Poker Game</title>
+    <title>Pokerlite</title>
     <script defer src="FunctionDrawCard.js"></script>
     <script defer src="ClassCard.js"></script>
     <script defer src="ClassPlayer.js"></script>
@@ -67,13 +67,23 @@
 
     <canvas id="pokerCanvas" width="1200" height="800" onmousemove="coodinate(event)" ></canvas>
     <div class="actions">
-        <button id="play">NewGame</button>
+        <button id="play">Play</button>
         <button id="fold">Fold</button>
         <button id="bet">Bet</button>
         <button id="nextround">NextRound</button>
         <div id="coodinate"> </div>
     </div>
     <div id="output"></div>
+
+    <!-- these royalty-free audio files were obtained from Pixabay.com -->
+    <!-- credit to floraphonic and freesound_community -->
+    <div class="audio">
+        <audio id="audio-shuffle" src="shuffle-cards-46455.mp3"></audio>
+        <audio id="audio-flip" src="carddrop2-92718.mp3"></audio>
+        <audio id="audio-chips" src="allinpushchips-96121.mp3"></audio>
+        <audio id="audio-win" src="marimba-win-f-3-209692.mp3"></audio>
+        <audio id="audio-lose" src="marimba-win-d-1-209681.mp3"></audio>
+    </div>
    
     <script defer >
         function coodinate(event){
