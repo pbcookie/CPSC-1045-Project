@@ -31,7 +31,7 @@ class Card{
       }
     }
     clearUp(){
-      ctx.clearRect(this.location[0], this.location[1], this.cw, this.ch);
+      ctx.clearRect(this.location[0]-5, this.location[1]-5, this.cw+10, this.ch+10);
     }
     display(){
       return this.number + " " + this.type + " Location:" + this.getLocation();
