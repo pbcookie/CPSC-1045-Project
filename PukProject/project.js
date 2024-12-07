@@ -21,9 +21,24 @@ let displayA=[350,670];
 let displayB=[350,20];
 
 
+/******************relocation */
+deckLocation = [250,340];
+firstPlayerCardLocation = [515, 520];
+secondPlayerCardLocation = [605, 520];
+
+firstComputerCardLocation = [515, 160];
+secondComputerCardLocation = [605, 160];
+
+firstCommunityCardLocation = [470, 340];
+secondCommunityCardLocation = [560, 340];
+thirdCommunityCardLocation = [650, 340];
+cardLocation = [deckLocation, firstPlayerCardLocation, secondPlayerCardLocation, firstComputerCardLocation, secondComputerCardLocation, firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation];
+tableLocation = cardLocation.slice(5);// including [firstCommunityCardLocation, secondCommunityCardLocation, thirdCommunityCardLocation]
+
+
 
 /************************************************************************************ */
-/*
+
 // Set the player names
 let playerName = prompt("Greetings, player! Enter your name:");
 //ClassName("player-name")[0] is the player1
@@ -65,8 +80,9 @@ if (confirm(guideText) == true) {
 
 
 
-let humanPlayer = new Player(playerName, "human");
-let ComputerPlayer = new Player(computerName, "computer");
+
+
+/*
 let playbutton = document.getElementById("play");
 playbutton.addEventListener('click',playNewGame(humanPlayer,ComputerPlayer));
 
@@ -82,3 +98,24 @@ let currentDeck;
 newGame();
 
 */
+const canvas = document.getElementById('pokerCanvas');
+const ctx = canvas.getContext('2d');
+
+
+let newgame;
+let humanPlayer = new Player(playerName, "human");
+let ComputerPlayer = new Player(computerName, "computer");
+
+/**********************************button ********** */
+let output = document.getElementById("output");
+let playbutton = document.getElementById("play");
+playbutton.addEventListener('click',() =>playNewGame(humanPlayer,ComputerPlayer));
+let betbutton = document.getElementById('bet');
+betbutton.addEventListener('click',() =>bet(newgame),);
+betbutton.style.display = "none";
+let foldbutton = document.getElementById('fold');
+foldbutton.addEventListener('click',() =>fold(newgame),);
+foldbutton.style.display ="none";
+let NextRoundbutton = document.getElementById('nextround');
+NextRoundbutton.addEventListener('click',() =>fold(newgame),);
+NextRoundbutton.style.display ="none";
