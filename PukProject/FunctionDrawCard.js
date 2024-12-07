@@ -32,21 +32,89 @@ function drawDeck() {
 }
 /********************************************* */
 ///draw back 
+///draw back 
 function drawBack(x, y, width, height) {
-    const gradient = ctx.createLinearGradient(x, y, x + width, y + height);
-    gradient.addColorStop(0, 'orange');
-    gradient.addColorStop(1, 'darkred');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(x, y, width, height);
-
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(x, y, width, height);
+    // White background
+    const borderRadius = Math.min(width, height) * 0.05;
+    drawRoundedRect(x, y, width, height, borderRadius, 'white');
+    drawRadialPattern(x + width / 2, y + height / 2, width, height);
+    drawCentralCircleWithStar(x + width / 2, y + height / 2, Math.min(width, height) / 6);
+    drawRoundedRect(x, y, width, height, borderRadius, null, 'gold', 4);
 }
 
-function drawDeck(x,y,width,height){
-    for(let i=2;i>-1;i--){
-        drawBack(x+5*i,y,width,height);
+// Radial pattern
+function drawRadialPattern(centerX, centerY, width, height) {
+    const rayCount = 20;
+    const radius = Math.min(width, height) / 2;
+    const angleStep = (2 * Math.PI) / rayCount;
+
+    for (let i = 0; i < rayCount; i++) {
+        const angleStart = i * angleStep;
+        const angleEnd = angleStart + angleStep;
+
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY); 
+        ctx.arc(centerX, centerY, radius, angleStart, angleEnd);
+        ctx.closePath();
+
+        ctx.fillStyle = i % 2 === 0 ? 'gold' : 'darkgreen';
+        ctx.fill();
+    }
+}
+
+// Central circle with a star
+function drawCentralCircleWithStar(centerX, centerY, radius) {
+    // Blue circle
+    ctx.fillStyle = 'navy';
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+    ctx.fill();
+
+    // White star
+    drawStar(centerX, centerY, radius * 0.6, radius * 0.3, 5, 'white');
+}
+// Draw star
+function drawStar(centerX, centerY, outerRadius, innerRadius, points, color) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    for (let i = 0; i < points * 2; i++) {
+        const angle = (i * Math.PI) / points;
+        const radius = i % 2 === 0 ? outerRadius : innerRadius;
+        const x = centerX + Math.cos(angle) * radius;
+        const y = centerY + Math.sin(angle) * radius;
+        ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+}
+// Draw rounded rectangle
+function drawRoundedRect(x, y, width, height, radius, fillColor = null, strokeColor = null, lineWidth = 1) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+
+    if (fillColor) {
+        ctx.fillStyle = fillColor;
+        ctx.fill();
+    }
+
+    if (strokeColor) {
+        ctx.strokeStyle = strokeColor;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+    }
+}
+function drawDeck(x, y, width, height) {
+    for (let i = 2; i > -1; i--) {
+        drawBack(x + 5 * i, y, width, height);
     }
 }
 /*********************************************** */
