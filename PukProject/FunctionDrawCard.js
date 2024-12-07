@@ -32,7 +32,6 @@ function drawDeck() {
 }
 /********************************************* */
 ///draw back 
-///draw back 
 function drawBack(x, y, width, height) {
     // White background
     const borderRadius = Math.min(width, height) * 0.05;
@@ -41,7 +40,6 @@ function drawBack(x, y, width, height) {
     drawCentralCircleWithStar(x + width / 2, y + height / 2, Math.min(width, height) / 6);
     drawRoundedRect(x, y, width, height, borderRadius, null, 'gold', 4);
 }
-
 // Radial pattern
 function drawRadialPattern(centerX, centerY, width, height) {
     const rayCount = 20;
@@ -61,7 +59,6 @@ function drawRadialPattern(centerX, centerY, width, height) {
         ctx.fill();
     }
 }
-
 // Central circle with a star
 function drawCentralCircleWithStar(centerX, centerY, radius) {
     // Blue circle
