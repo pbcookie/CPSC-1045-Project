@@ -217,3 +217,12 @@ body {
     font-size: 3em;
     background-color: rgba(0, 0, 0, 0.5);
 }
+#player1 {
+    margin-top: 350px; 
+    margin-left: 80px;
+}
+#player2 {
+    position: absolute;
+    right: 3%; 
+    transform: translateX(0); 
+}
