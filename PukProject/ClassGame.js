@@ -85,32 +85,36 @@ function bet(game){
     let comcard = game.comcard;
     let cpt = game.player2;
     audioChips.play();
-    if( comcard.cardArr[2].isFace()  ){
-        for(let i=0;i<2;i++){
-            cpt.cardArr[i].reveal();
-            cpt.cardArr[i].clearUp();
-            cpt.cardArr[i].draw();
+    betbutton.style.display = "none";
+    foldbutton.style.display ="none";
+    setTimeout(()=> {
+        if( comcard.cardArr[2].isFace()  ){
+            for(let i=0;i<2;i++){
+                cpt.cardArr[i].reveal();
+                cpt.cardArr[i].clearUp();
+                cpt.cardArr[i].draw();
+            }
+            game.calculate();            
         }
-        game.calculate();
-        betbutton.style.display = "none";
-        foldbutton.style.display ="none";
-        
-    }
-    else if( comcard.cardArr[1].isFace() ){
-        comcard.cardArr[2].reveal();
-        comcard.cardArr[2].clearUp();
-        comcard.cardArr[2].draw();
-    }
-    else if( comcard.cardArr[0].isFace() ){
-        comcard.cardArr[1]. reveal();
-        comcard.cardArr[1].clearUp();
-        comcard.cardArr[1].draw();
-    }
-    else {
-        comcard.cardArr[0].reveal();
-        comcard.cardArr[0].clearUp();
-        comcard.cardArr[0].draw();
-    }
+        else if( comcard.cardArr[1].isFace() ){
+            comcard.cardArr[2].reveal();
+            comcard.cardArr[2].clearUp();
+            comcard.cardArr[2].draw();
+            betbutton.style.display = "block";
+            foldbutton.style.display ="block";        }
+        else if( comcard.cardArr[0].isFace() ){
+            comcard.cardArr[1]. reveal();
+            comcard.cardArr[1].clearUp();
+            comcard.cardArr[1].draw();
+            betbutton.style.display = "block";
+            foldbutton.style.display ="block";        }
+        else {
+            comcard.cardArr[0].reveal();
+            comcard.cardArr[0].clearUp();
+            comcard.cardArr[0].draw();
+            betbutton.style.display = "block";
+            foldbutton.style.display ="block";        }
+    }, 500);
 }
 
 
@@ -119,10 +123,14 @@ function fold( game ){
     output.innerHTML = "";
     ctx.clearRect(displayA[0]-5,displayA[1]-5,610,130);
     ctx.clearRect(displayB[0]-5,displayB[1]-5,610,130);
-    betbutton.style.display = "block";
-    foldbutton.style.display ="block";
     NextRoundbutton.style.display ="none";
-    setTimeout(game.newRound(), 1000);
+    betbutton.style.display = "none";
+    foldbutton.style.display ="none";
+    setTimeout(() => {
+        game.newRound()
+        betbutton.style.display = "block";
+        foldbutton.style.display ="block";
+    }, 500);
 }
 
 
