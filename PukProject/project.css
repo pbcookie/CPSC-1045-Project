@@ -27,8 +27,8 @@ body {
 }
 .guide-button {
     position: absolute;
-    left: 140px;
-    bottom: 50px;
+    right: 200px;
+    top: 220px;
     transform: translateY(0);
     background-color: #ffa600;
     color: white;
@@ -171,8 +171,8 @@ body {
 
 .actions {
     position: absolute;
-    bottom: 40px;
-    right: 50px;
+    bottom: 80px;
+    right: 195px;
     display: flex;
     flex-direction: column;
     gap: 10px;
