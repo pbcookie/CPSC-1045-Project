@@ -55,8 +55,7 @@ let guideText = "How to play the game:\n" +
     "1. Each player is dealt two cards.\n" +
     "2. Dealer reveals three community cards, one at a time.\n" +
     "3. After each reveal, press Bet to continue or Fold to escape and deal a new hand.\n" +
-    "4. If you win a hand, you get a point. If you lose a hand, you will lose a point!\n" +
-    "5. Score three points against the computer and you win the match!\n" +
+    "4. If you win a hand, you get a point. Score three points against the computer and you win the match!\n" +
     "... (Press OK to see the hand strength guide or Cancel to close)";
 
 let handStrengthText = "Hand strength:\n" +
