@@ -44,7 +44,6 @@ class Game{
         let winner = CompareCard(this.player1,this.player2,this.comcard);
         
         if(winner == "draw"){
-            console.log("this round is draw");
             output.style.color = 'lightgreen';
             output.innerHTML = "This round is draw";
             NextRoundbutton.style.display ="block";
@@ -69,7 +68,6 @@ class Game{
                 else {
                     audioLose.play();
                 }
-                console.log(winner.name + " wins!");
                 output.style.color = 'lightyellow';
                 output.innerHTML = winner.name + " wins!";
                 NextRoundbutton.style.display ="none";
@@ -130,7 +128,6 @@ function fold( game ){
 
 function playNewGame(player1,player2){
     output.innerHTML = "";
-    console.log("Button clicked");
     newgame = new Game(player1,player2);
     fold(newgame);
     player1.point = 0;

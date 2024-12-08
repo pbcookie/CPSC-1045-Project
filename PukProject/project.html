@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <canvas id="pokerCanvas" width="1200" height="800" onmousemove="coodinate(event)" ></canvas>
+    <canvas id="pokerCanvas" width="1200" height="800"></canvas>
     <div class="actions">
         <button id="play">Play</button>
         <button id="fold">Fold</button>
@@ -84,15 +84,6 @@
         <audio id="audio-win" src="marimba-win-f-3-209692.mp3"></audio>
         <audio id="audio-lose" src="marimba-win-d-1-209681.mp3"></audio>
     </div>
-   
-    <script defer >
-        function coodinate(event){
-            let x = event.offsetX;
-            let y = event.offsetY;
-            let output = document.getElementById("coodinate");
-            output.innerHTML = `X: ${x} , Y: ${y}`;
-        }
-    </script>
     
 </body>
 
