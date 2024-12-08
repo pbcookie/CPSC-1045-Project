@@ -32,6 +32,7 @@ function drawDeck() {
 }
 /********************************************* */
 ///draw back 
+///draw back 
 function drawBack(x, y, width, height) {
     // White background
     const borderRadius = Math.min(width, height) * 0.05;
@@ -108,15 +109,18 @@ function drawRoundedRect(x, y, width, height, radius, fillColor = null, strokeCo
         ctx.lineWidth = lineWidth;
         ctx.stroke();
     }
-}
-function drawDeck(x, y, width, height) {
-    for (let i = 2; i > -1; i--) {
-        drawBack(x + 5 * i, y, width, height);
+} 
+
+function drawDeck(x,y,width,height){
+    for(let i=2;i>-1;i--){
+        drawBack(x+5*i,y,width,height);
     }
 }
 /*********************************************** */
 // Draw a card
 function drawCard(x, y, width, height, number, shapeName) {
+    let size = width/80*15;
+
     // Background
     ctx.fillStyle = 'beige';
     ctx.fillRect(x, y, width, height);
@@ -127,7 +131,8 @@ function drawCard(x, y, width, height, number, shapeName) {
     ctx.strokeRect(x, y, width, height);
 
     // Draw number at the top left
-    ctx.font = 'bold 20px Arial';
+    let fontsize = width/80*20;
+    ctx.font = 'bold '+ fontsize +'px Arial';
     ctx.fillStyle = 'black';
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
@@ -135,13 +140,13 @@ function drawCard(x, y, width, height, number, shapeName) {
 
     // Draw in the center
     const shapeFunc = SHAPES[shapeName];
-    shapeFunc(x + width / 2, y + height / 2, number);
+    shapeFunc(size, x + width / 2, y + height / 2, number);
 }
 
 // Different shape count and positions
-function drawShapes(centerX, centerY, count, drawShape) {
-    const colSpacing = 25; 
-    const rowSpacing = 25; 
+function drawShapes(size, centerX, centerY, count, drawShape) {
+    const colSpacing = size/15*25; 
+    const rowSpacing = size/15*25; 
 
     let positions = [];
     switch (count) {
@@ -220,18 +225,18 @@ function drawShapes(centerX, centerY, count, drawShape) {
 }
 
 // Shape drawing functions 
-function drawCircle(centerX, centerY, count) {
-    drawShapes(centerX, centerY, count, (x, y) => {
+function drawCircle(size, centerX, centerY, count) {
+    drawShapes(size, centerX, centerY, count, (x, y) => {
         ctx.beginPath();
-        ctx.arc(x, y, 7.5, 0, Math.PI * 2); 
+        ctx.arc(x, y, size/2, 0, Math.PI * 2); 
         ctx.fillStyle = 'blue';
         ctx.fill();
     });
 }
 
-function drawDiamond(centerX, centerY, count) {
-    drawShapes(centerX, centerY, count, (x, y) => {
-        const size = 15;
+function drawDiamond(size, centerX, centerY, count) {
+    drawShapes(size, centerX, centerY, count, (x, y) => {
+        
         ctx.beginPath();
         ctx.moveTo(x, y - size / 2); 
         ctx.lineTo(x - size / 2, y); 
@@ -243,9 +248,9 @@ function drawDiamond(centerX, centerY, count) {
     });
 }
 
-function drawTriangle(centerX, centerY, count) {
-    drawShapes(centerX, centerY, count, (x, y) => {
-        const size = 15;
+function drawTriangle(size, centerX, centerY, count) {
+    drawShapes(size, centerX, centerY, count, (x, y) => {
+        
         ctx.beginPath();
         ctx.moveTo(x, y - size / 2); 
         ctx.lineTo(x - size / 2, y + size / 2); 
