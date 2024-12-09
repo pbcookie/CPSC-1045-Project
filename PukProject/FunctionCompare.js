@@ -13,12 +13,13 @@ function CompareCard(playerA, playerB, comcards) {
     //display the result of the cardarray
     for(let i=0;i<5;i++){
         let cardA = fiveArrA[i];
-        drawCard(displayA[0]+i*(cardA.cw + 10)   ,displayA[1],cardA.cw,cardA.ch,cardA.number,cardA.type);
+        drawCard(displayA[0]+i*(cardA.cw/2 + 5)   ,displayA[1],cardA.cw/2,cardA.ch/2,cardA.number,cardA.type);
     }
     for(let i=0;i<5;i++){
         let cardB = fiveArrB[i];
-        drawCard(displayB[0]+i*(cardB.cw + 10)   ,displayB[1],cardB.cw,cardB.ch,cardB.number,cardB.type);
+        drawCard(displayB[0]+i*(cardB.cw/2 + 5)   ,displayB[1],cardB.cw/2,cardB.ch/2,cardB.number,cardB.type);
     }
+    
     ctx.font = 'bold 20px Arial';
     ctx.fillStyle = 'black';
     ctx.textAlign = 'left';
@@ -50,7 +51,7 @@ function CompareCard(playerA, playerB, comcards) {
             textA = "HighCard";
             break;
     }
-    ctx.fillText(textA, 830, 730);
+    ctx.fillText(textA, 830, 630);
     let textB;
     switch(Number(fivecardB[0])){
         case 7:
@@ -78,7 +79,7 @@ function CompareCard(playerA, playerB, comcards) {
             textB = "HighCard";
             break;
     }
-    ctx.fillText(textB,830,75);
+    ctx.fillText(textB,830,175);
 
 
 

@@ -136,7 +136,7 @@ function drawCard(x, y, width, height, number, shapeName) {
     ctx.fillStyle = 'black';
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
-    ctx.fillText(number, x + 10, y + 8);
+    ctx.fillText(number, x + fontsize/2, y + fontsize/2);
 
     // Draw in the center
     const shapeFunc = SHAPES[shapeName];

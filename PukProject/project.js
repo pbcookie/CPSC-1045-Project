@@ -17,8 +17,8 @@ let tableLocation = cardLocation.slice(5);// including [firstCommunityCardLocati
 
 //loction for display result
 
-let displayA=[350,670];
-let displayB=[350,20];
+let displayA=[780,540];
+let displayB=[780,200];
 
 
 /******************relocation */
