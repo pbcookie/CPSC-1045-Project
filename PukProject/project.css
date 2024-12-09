@@ -27,9 +27,9 @@ body {
 }
 .guide-button {
     position: absolute;
-    right: 200px;
-    top: 220px;
-    transform: translateY(0);
+    top: 50%;
+    left: 50%;
+    transform: translate(360%, 0%);
     background-color: #ffa600;
     color: white;
     padding: 15px 30px;
@@ -49,8 +49,9 @@ body {
 
 .score-tracker {
     position: absolute;
-    top: 15%;
-    left: 18%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-300%, -50%);
     display: flex;
     gap: 20px;
     font-size: 18px;
@@ -170,9 +171,14 @@ body {
 }
 
 .actions {
+    display: block;
+    height: 150px;
+    width: 125px;
     position: absolute;
-    bottom: 80px;
-    right: 195px;
+    top: 50%;
+    left: 50%;
+    transform: translate(300%, 50%);
+
     display: flex;
     flex-direction: column;
     gap: 10px;
