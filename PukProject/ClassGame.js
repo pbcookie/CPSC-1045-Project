@@ -121,8 +121,8 @@ function bet(game){
 function fold( game ){
     audioFlip.play();
     output.innerHTML = "";
-    ctx.clearRect(displayA[0]-5,displayA[1]-5,610,130);
-    ctx.clearRect(displayB[0]-5,displayB[1]-5,610,130);
+    ctx.clearRect(displayA[0]-5,displayA[1]-5,300,120);
+    ctx.clearRect(displayB[0]-5,displayB[1]-40,300,120);
     NextRoundbutton.style.display ="none";
     betbutton.style.display = "none";
     foldbutton.style.display ="none";
